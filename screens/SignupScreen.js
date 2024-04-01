@@ -15,7 +15,7 @@ const SignupScreen = ({ navigation }) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [age, setAge] = useState("");
+  const [dob, setDOB] = useState("");
 
   const handleSignup = async () => {
     try {
@@ -29,7 +29,7 @@ const SignupScreen = ({ navigation }) => {
           lastName,
           email,
           password,
-          age
+          dob
         }),
       });
 
@@ -66,8 +66,8 @@ const SignupScreen = ({ navigation }) => {
 
       <Text style={styles.label}>Date of Birth</Text>
       <TextInput
-        value={age}
-        onChangeText={setAge}
+        value={dob}
+        onChangeText={setDOB}
         keyboardType="numeric"
         style={styles.input}
       />
