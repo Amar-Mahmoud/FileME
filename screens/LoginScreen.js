@@ -1,91 +1,97 @@
 import React, { useState } from "react";
+import { View, Text, TextInput, StyleSheet } from "react-native";
 import CustomButton from "../components/CustomButton";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  Alert,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+ const [email, setEmail] = useState("");
+ const [password, setPassword] = useState("");
+ const [message, setMessage] = useState(""); // State to store login messages
 
-  const handleLogin = async () => {
-    try {
-      const response = await fetch("http://localhost:3001/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+ const handleLogin = async () => {
+  setMessage(""); // Clear previous messages
+  try {
+   const response = await fetch("http://localhost:3001/login", {
+    method: "POST",
+    headers: {
+     "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+   });
 
-      const data = await response.json();
+   const data = await response.json();
 
-      if (response.status === 200) {
-        Alert.alert("Success", "Login successful");
-      } else {
-        throw new Error(data.message || "An error occurred during login");
-      }
-    } catch (error) {
-      Alert.alert("Error", error.message);
-    }
-  };
+   if (response.status === 200) {
+    localStorage.setItem("token", data.token.split(" ")[1]); // Store only the token part, not 'Bearer'
+    navigation.navigate("MainPage");
+   } else {
+    throw new Error(data.message || "An error occurred during login");
+   }
+  } catch (error) {
+   setMessage(error.message); // Set error message to display on the screen
+  }
+ };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Email:</Text>
-      <TextInput value={email} onChangeText={setEmail} style={styles.input} />
+ return (
+  <View style={styles.container}>
+   <Text style={styles.label}>Email:</Text>
+   <TextInput
+    value={email}
+    onChangeText={setEmail}
+    style={styles.input}
+    autoCapitalize="none" // Ensure email address is entered in lower case
+   />
 
-      <Text style={styles.label}>Password:</Text>
-      <TextInput
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        style={styles.input}
-      />
+   <Text style={styles.label}>Password:</Text>
+   <TextInput
+    value={password}
+    onChangeText={setPassword}
+    secureTextEntry
+    style={styles.input}
+   />
 
-        <CustomButton
-          title={"Login"}
-          onPress={() => handleLogin()}
-        ></CustomButton>
-    </View>
-  );
+   <CustomButton title="Login" onPress={handleLogin} />
+
+   {/* Display message below the button */}
+   {message !== "" && <Text style={styles.message}>{message}</Text>}
+  </View>
+ );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 20,
-    width: "50%",
-    alignSelf: "center",
-  },
-  label: {
-    marginVertical: 10,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-  },
-  button: {
-    backgroundColor: "#007bff",
-    padding: 10,
-    borderRadius: 5,
-    marginVertical: 10,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    alignSelf: "center",
-  },
+ container: {
+  flex: 1,
+  justifyContent: "center",
+  padding: 20,
+  width: "100%", // Adjusted for full-width usability
+  alignSelf: "center",
+ },
+ label: {
+  marginVertical: 8,
+  fontSize: 16,
+  color: "#333",
+  fontWeight: "bold",
+  textTransform: "uppercase",
+ },
+ input: {
+  height: 50,
+  borderColor: "#ccc",
+  borderWidth: 1,
+  marginBottom: 20,
+  paddingHorizontal: 15, // Rounded corners
+  fontSize: 16,
+  backgroundColor: "#fff",
+  shadowColor: "#000",
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 6,
+  elevation: 3,
+ },
+ message: {
+  color: "red", // Error or information messages in red
+  fontSize: 16,
+  marginTop: 20,
+  textAlign: "center",
+ },
 });
 
 export default LoginScreen;
