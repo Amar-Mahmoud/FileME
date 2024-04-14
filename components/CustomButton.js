@@ -15,23 +15,17 @@ const CustomButton = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#3A45AD',
     paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 10,
+    paddingHorizontal: 50,
+    borderRadius: 5,
     marginVertical: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
+
     elevation: 8,
   },
   buttonText: {
     color: 'white',
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: 'bold',
     alignSelf: 'center',
     textTransform: 'uppercase',
