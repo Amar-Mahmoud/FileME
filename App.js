@@ -28,6 +28,9 @@ const Stack = createNativeStackNavigator();
 
 import * as Font from "expo-font";
 import RegisteredInvestmentAccounts from "./screens/RegisteredInvestmentAccounts";
+import GovernmentIncome from "./screens/GovernmentIncome";
+import ExpenseContinue from "./screens/ExpenseContinue";
+import BusinessPage from "./screens/BusinessPage";
 
 async function loadFonts() {
  await Font.loadAsync({
@@ -128,6 +131,23 @@ function App() {
     <Stack.Screen
      name="RegisteredInvestmentAccounts"
      component={RegisteredInvestmentAccounts}
+     options={{ headerShown: false }}
+    />
+
+    <Stack.Screen
+     name="GovernmentIncome"
+     component={GovernmentIncome}
+     options={{ headerShown: false }}
+    />
+
+    <Stack.Screen
+     name="ExpenseContinue"
+     component={ExpenseContinue}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="BusinessPage"
+     component={BusinessPage}
      options={{ headerShown: false }}
     />
 

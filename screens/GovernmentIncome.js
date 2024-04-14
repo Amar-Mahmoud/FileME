@@ -12,12 +12,9 @@ import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 
-const RegisteredInvestmentAccounts = () => {
+const GovernmentIncome = () => {
  const navigation = useNavigation();
- const [rrspcontrib, setRRSPContrib] = useState();
- const [rrspwith, setRRSPWith] = useState();
- const [pension, setPension] = useState();
- const [pensionWithdrawl, setPensionWithdrawl] = useState();
+ const [govIncome, setGovIncome] = useState();
 
  return (
   <View style={styles.container}>
@@ -31,50 +28,21 @@ const RegisteredInvestmentAccounts = () => {
     <Image
      style={styles.logo}
      resizeMode="contain"
-     source={require("../assets/progress_2_5.png")} // Path to your image
+     source={require("../assets/progress_2_4.png")} // Path to your image
     />
    </View>
    <ScrollView contentContainerStyle={{ justifyContent: "center" }}>
-    <Text style={styles.title}>What is your Pension & RRSP Amounts?</Text>
+    <Text style={styles.title}>Does the Government Give You Any Income?</Text>
     <Text style={styles.subtitle}>
-     How much did you contribute to your pension and RRSP? If you have, how much
-     did you TAKE OUT of these accounts?
+     Do you receive from government programs like EI or social assistance?
     </Text>
 
     <View style={styles.inputContainer}>
-     <Text style={styles.inputLabel}>Your CONTRIBUTION to RRSP Account?</Text>
+     <Text style={styles.inputLabel}>Government Plan Income</Text>
      <TextInput
       style={styles.input}
-      value={rrspcontrib}
-      onChangeText={setRRSPContrib}
-      placeholder="$ 0.00"
-      keyboardType="number-pad"
-     />
-     <Text style={styles.inputLabel}>Your WITHDRAWL from RRSP Account?</Text>
-     <TextInput
-      style={styles.input}
-      value={rrspwith}
-      onChangeText={setRRSPWith}
-      placeholder="$ 0.00"
-      keyboardType="number-pad"
-     />
-     <Text style={styles.inputLabel}>
-      Your CONTRIBUTION to Pension Account?
-     </Text>
-     <TextInput
-      style={styles.input}
-      value={pension}
-      onChangeText={setPension}
-      placeholder="$ 0.00"
-      keyboardType="number-pad"
-     />
-     <Text style={styles.inputLabel}>
-      Your WITHDRAWAL from Pension Account?{" "}
-     </Text>
-     <TextInput
-      style={styles.input}
-      value={pensionWithdrawl}
-      onChangeText={setPensionWithdrawl}
+      value={govIncome}
+      onChangeText={setGovIncome}
       placeholder="$ 0.00"
       keyboardType="number-pad"
      />
@@ -84,7 +52,7 @@ const RegisteredInvestmentAccounts = () => {
    <CustomButton
     style={styles.startButton}
     onPress={() => {
-     navigation.navigate("GovernmentIncome");
+     navigation.navigate("ExpenseContinue");
     }}
     title="Next"
    />
@@ -161,4 +129,4 @@ const styles = StyleSheet.create({
  },
 });
 
-export default RegisteredInvestmentAccounts;
+export default GovernmentIncome;

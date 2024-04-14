@@ -37,8 +37,7 @@ const InvestmentIncome = () => {
    <ScrollView contentContainerStyle={{ justifyContent: "center" }}>
     <Text style={styles.title}>What is your Investment Income?</Text>
     <Text style={styles.subtitle}>
-     How much did you contribute to your pension and RRSP? If you have, how much
-     did you TAKE OUT of these accounts?
+    If you have Investments, we need to track their profits. Do not include the investment amount, we only need to know how much you GAINED or LOST
     </Text>
 
     <View style={styles.inputContainer}>
