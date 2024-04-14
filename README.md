@@ -4,7 +4,7 @@ This tax filing software is built using React Native Expo for the frontend, bcry
 
 ## Features
 
-- User authentication with encrypted passwords
+- User authentication with AES256 encrypted data
 - Data storage and retrieval using MongoDB
 - Simple and intuitive user interface for tax filing
 
