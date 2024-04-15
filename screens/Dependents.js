@@ -11,6 +11,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/CustomButton"; // Assuming this is your styled 'Next' button
 import RadioForm from "react-native-simple-radio-button"; // You might need to install this package
+import styles from "../styles";
 
 const Dependents = () => {
  const navigation = useNavigation();
@@ -59,7 +60,10 @@ const Dependents = () => {
    >
     <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
    </TouchableOpacity>
-   <ScrollView contentContainerStyle={{ justifyContent: "center", marginTop: "15%" }} showsVerticalScrollIndicator="false">
+   <ScrollView
+    contentContainerStyle={{ justifyContent: "center", marginTop: "25%", paddingVertical:20 }}
+    showsVerticalScrollIndicator="false"
+   >
     <Text style={styles.subtitle}>Full Name:</Text>
 
     <TextInput
@@ -84,7 +88,7 @@ const Dependents = () => {
      value={formData.dob}
      onChangeText={(text) => handleInputChange("dob", text)}
     />
-    <Text style={styles.subtitle}>What is their relationship to you?</Text>
+    <Text style={styles.subtitle}>Relationship to You</Text>
     <RadioForm
      radio_props={relationshipOptions}
      initial={-1}
@@ -121,75 +125,5 @@ const Dependents = () => {
   </ScrollView>
  );
 };
-
-const styles = StyleSheet.create({
- container: {
-  flex: 1,
-  backgroundColor: "#DAFFFF",
-  padding: 20,
-  paddingTop: 20,
-  justifyContent: "space-between",
- },
- backButton: {
-  position: "absolute",
-  top: 10,
-  marginVertical: "auto",
-  margin: 10,
-  left: 10,
- },
- indicatorContainer: {
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "center",
-  paddingVertical: 20,
- },
-
- logo: {
-  marginVertical: 20,
-  padding: 20,
- },
- title: {
-  fontSize: 34,
-  fontWeight: "bold",
-  textAlign: "left",
- },
- subtitle: {
-  fontSize: 20,
-  textAlign: "left",
-  fontWeight: "bold",
-  marginVertical: 10,
-  color: "gray",
- },
- inputContainer: {
-  marginBottom: 20,
-  marginTop: 20,
-  alignSelf: "center",
-  justifyContent: "space-between",
-  flexDirection: "row",
- },
- inputLabel: {
-  fontSize: 18,
- },
- input: {
-  height: 50,
-  backgroundColor: "#fff",
-  borderWidth: 1,
-  borderColor: "gray",
-  borderRadius: 10,
-  paddingHorizontal: 10,
-  fontSize: 18,
-  marginTop: 5,
- },
- startButton: {
-  position: "absolute",
-  bottom: 20,
-  left: 0,
-  right: 0,
-  paddingHorizontal: 60,
-  paddingVertical: 15,
-  borderRadius: 30,
-  backgroundColor: "#0000ff",
- },
-});
 
 export default Dependents;

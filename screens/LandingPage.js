@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/CustomButton";
+import styles from "../styles";
 
 const LandingPage = () => {
  const navigation = useNavigation();
@@ -39,36 +40,5 @@ const LandingPage = () => {
  );
 };
 
-const styles = StyleSheet.create({
- container: {
-  flex: 1,
-  justifyContent: "space-evenly",
-  alignItems: "center",
-  padding: 20,
- },
- heroTitle: {
-  fontSize: 24,
-  fontWeight: "bold",
-  marginBottom: 10,
- },
- heroText: {
-  fontSize: 18,
-  textAlign: "center",
-  marginBottom: 20,
- },
- headerButtons: {
-  flexDirection: "row",
-  justifyContent: "space-evenly",
-  marginRight: "10%",
-  width: 200,
- },
- buttonSpacer: {
-  width: 10, // Adjust the spacing between the buttons
- },
-  buttonStyle: {
-    width: 100,
-    fontSize: 16,
-  },
-});
 
 export default LandingPage;
