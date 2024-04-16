@@ -12,10 +12,18 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
+
 
 const VerifyPhoneNumber = () => {
  const navigation = useNavigation();
- const [phone, setPhone] = useState("");
+ const { userData, updateUserData } = useData();
+ const [phone, setPhone] = React.useState(userData.phone || "");
+
+ const handleSave = () => {
+    updateUserData({ phone });
+    navigation.navigate("CodeSent")
+};
 
  return (
   <GradientContainer style={styles.container}>
@@ -56,7 +64,7 @@ const VerifyPhoneNumber = () => {
 
    <CustomButton
     style={styles.nextButton}
-    onPress={() => navigation.navigate("CodeSent")}
+    onPress={() => handleSave()}
     title="Send Code"
    />
   </GradientContainer>

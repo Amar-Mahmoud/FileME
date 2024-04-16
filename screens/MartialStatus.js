@@ -12,10 +12,17 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../context/DataContext";
 
 const MartialStatus = () => {
  const navigation = useNavigation();
- const [married, setMarried] = useState("");
+ const { userData, updateUserData } = useData();
+ const [married, setMarried] = React.useState(userData.married || false);
+
+ const handleSave = () => {
+  updateUserData({ email });
+  navigation.navigate("DependentsPage")
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -60,7 +67,7 @@ const MartialStatus = () => {
 
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
-     onPress={() => navigation.navigate("DependentsPage")}
+     onPress={() => handleSave()}
      title="Next"
     />
    </View>

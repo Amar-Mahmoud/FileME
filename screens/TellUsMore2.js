@@ -13,10 +13,17 @@ import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
 import Octicons from "react-native-vector-icons/Octicons";
+import { useData } from "../components/DataProvider";
 
 const TellUsMore2 = () => {
  const navigation = useNavigation();
- const [dob, setDOB] = useState("");
+ const { userData, updateUserData } = useData();
+ const [dob, setDOB] = React.useState(userData.dob || "");
+
+ const handleSave = () => {
+  updateUserData({ dob });
+  navigation.navigate("AllDone")
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -64,7 +71,7 @@ const TellUsMore2 = () => {
     </Text>
     <CustomButton
      style={styles.nextButton}
-     onPress={() => navigation.navigate("AllDone")}
+     onPress={() => handleSave()}
      title="Create account"
     />
    </View>

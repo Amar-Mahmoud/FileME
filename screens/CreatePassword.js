@@ -13,11 +13,18 @@ import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
 import Octicons from "react-native-vector-icons/Octicons";
+import { useData } from "../components/DataProvider";
 
 const CreatePassword = () => {
  const navigation = useNavigation();
- const [password, setPassword] = useState("");
  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+ const { userData, updateUserData } = useData();
+ const [password, setPassword] = React.useState(userData.password || "");
+
+ const handleSave = () => {
+    updateUserData({ password });
+    navigation.navigate("PasswordCreated")
+};
 
  return (
   <GradientContainer style={styles.container}>
@@ -75,7 +82,7 @@ const CreatePassword = () => {
 
    <CustomButton
     style={styles.nextButton}
-    onPress={() => navigation.navigate("PasswordCreated")}
+    onPress={() => handleSave()}
     title="Done"
    />
   </GradientContainer>

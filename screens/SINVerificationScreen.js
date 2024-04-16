@@ -12,10 +12,18 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../context/DataContext";
+
 
 const SINVerificationScreen = () => {
  const navigation = useNavigation();
- const [sin, setSin] = useState("");
+ const { userData, updateUserData } = useData();
+ const [sin, setSIN] = React.useState(userData.sin || "");
+
+ const handleSave = () => {
+  updateUserData({ sin });
+  navigation.navigate("MartialStatus")
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -56,7 +64,7 @@ const SINVerificationScreen = () => {
 
     <CustomButton
      style={{...styles.nextButton, bottom: 0}}
-     onPress={() => navigation.navigate("MartialStatus")}
+     onPress={() => handleSave()}
      title="Next"
     />
    </View>

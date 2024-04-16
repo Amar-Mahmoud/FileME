@@ -23,18 +23,48 @@ mongoose
  .catch((err) => console.error("DB connection error:", err));
 
 const userSchema = new mongoose.Schema({
- firstName: { type: String, required: true },
- lastName: { type: String, required: true },
- email: { type: String, required: true, unique: true },
- password: { type: String, required: true },
- dob: { type: String, required: true },
- sin: { type: String, required: true },
- address: {
-  streetAddress1: { type: String, required: true },
-  streetAddress2: { type: String }, // Optional field
-  city: { type: String, required: true },
-  postalCode: { type: String, required: true },
- },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  phone: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  dob: { type: Date, required: true },
+  married : { type: Boolean, required: false },
+  sin: { type: String, required: false, match: [/^\d{9}$/, 'Invalid SIN number.'] },
+  addressStreetAddress1: { type: String, required: false },
+  addressStreetAddress2: { type: String },
+  addressCity: { type: String, required: false },
+  addressPostalCode: { type: String, required: false },
+  dependentFullName: { type: String, required: false },
+  dependentSIN: { type: String, required: false, match: [/^\d{9}$/, 'Invalid SIN number.'] },
+  dependentDateOfBirth: { type: Date, required: false },
+  dependentRelationshipToUser: {
+    type: String,
+    required: false,
+    enum: ['spouse', 'child', 'elder', 'impaired_dependent']
+  },
+  dependentIncome: { type: Number },
+  dependentEducationCosts: { type: Number },
+  dependentResidencyStatus: {
+    type: String,
+    required: false,
+    enum: ['full_year', 'partial_year', 'none']
+  },
+  vehicleTotalExpenses: { type: Number },
+  travelTotalExpenses: { type: Number },
+  businessGrossIncome: { type: Number },
+  businessExpenses: { type: Number },
+  businessNetIncome: { type: Number },
+  investmentInterestProfit: { type: Number },
+  investmentInterestLost: { type: Number },
+  investmentDividendsProfit: { type: Number },
+  investmentDividendsLoss: { type: Number },
+  capitalGainsPropertyProfit: { type: Number },
+  capitalGainsPropertyLoss: { type: Number },
+  capitalGainsStocksProfit: { type: Number },
+  capitalGainsStocksLoss: { type: Number },
+  unusedRRSPContributions: { type: Number },
+  tuitionCarryforwards: { type: Number },
 });
 
 // Encrypt sensitive information before saving to the database
@@ -45,6 +75,9 @@ userSchema.pre("save", async function (next) {
 
  if (this.isModified("firstName")) {
   this.firstName = encrypt(this.firstName, secretKey);
+ }
+ if (this.isModified("firstName")) {
+  this.phone = encrypt(this.phone, secretKey);
  }
  if (this.isModified("lastName")) {
   this.lastName = encrypt(this.lastName, secretKey);

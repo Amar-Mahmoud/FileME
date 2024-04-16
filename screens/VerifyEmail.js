@@ -12,10 +12,17 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
 
 const VerifyEmail = () => {
  const navigation = useNavigation();
- const [email, setEmail] = useState("");
+ const { userData, updateUserData } = useData();
+ const [email, setEmail] = React.useState(userData.email || "");
+
+ const handleSave = () => {
+  updateUserData({ email });
+  navigation.navigate("VerifyEmail2", { email: email });
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -25,8 +32,6 @@ const VerifyEmail = () => {
    >
     <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
    </TouchableOpacity>
-
-   
 
    <View style={{ justifyContent: "center", marginTop: "20%" }}>
     <Text style={styles.title}>Let's verify your email</Text>
@@ -45,7 +50,7 @@ const VerifyEmail = () => {
 
    <CustomButton
     style={styles.nextButton}
-    onPress={() => navigation.navigate("VerifyEmail2", { email: email })}
+    onPress={() => handleSave()}
     title="Continue"
    />
   </GradientContainer>

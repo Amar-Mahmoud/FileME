@@ -3,12 +3,18 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import { useNavigation } from '@react-navigation/native';
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
 
 
 const EmailVerificationScreen = () => {
   const navigation = useNavigation();
-  const [email, setEmail] = useState('');
-  const [isSelected, setSelection] = useState(false);
+  const { userData, updateUserData } = useData();
+  const [phone, setPhone] = React.useState(userData.phone || "");
+ 
+  const handleSave = () => {
+     updateUserData({ phone });
+     navigation.navigate("CodeSent")
+ };
 
   return (
     <GradientContainer style={styles.container}>
@@ -37,7 +43,7 @@ const EmailVerificationScreen = () => {
 
       <TouchableOpacity 
         style={styles.button}
-        onPress={() => {/* Handle the press event */}}
+        onPress={() => {handleSave()}}
       >
         <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>

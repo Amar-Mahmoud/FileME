@@ -13,11 +13,18 @@ import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
 import Octicons from "react-native-vector-icons/Octicons";
+import { useData } from "../components/DataProvider";
 
 const TellUsMore = () => {
  const navigation = useNavigation();
- const [firstName, setFirstName] = useState("");
- const [lastName, setLastName] = useState("");
+ const { userData, updateUserData } = useData();
+ const [firstName, setFirstName] = React.useState(userData.firstName || "");
+ const [lastName, setLastName] = React.useState(userData.lastName || "");
+
+ const handleSave = () => {
+  updateUserData({ firstName, lastName });
+  navigation.navigate("TellUsMore2");
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -42,7 +49,9 @@ const TellUsMore = () => {
       paddingVertical: 10,
      }}
     >
-     <Text style={{...styles.subHeadline2, textAlign: "left"}}>First Name</Text>
+     <Text style={{ ...styles.subHeadline2, textAlign: "left" }}>
+      First Name
+     </Text>
      <TextInput
       style={{
        ...styles.input,
@@ -53,7 +62,9 @@ const TellUsMore = () => {
       onChangeText={setFirstName}
       placeholder=""
      />
-     <Text style={{...styles.subHeadline2, textAlign: "left"}}>Last Name</Text>
+     <Text style={{ ...styles.subHeadline2, textAlign: "left" }}>
+      Last Name
+     </Text>
      <TextInput
       style={{
        ...styles.input,
@@ -69,7 +80,7 @@ const TellUsMore = () => {
 
    <CustomButton
     style={styles.nextButton}
-    onPress={() => navigation.navigate("TellUsMore2")}
+    onPress={() => handleSave()}
     title="Done"
    />
   </GradientContainer>

@@ -4,9 +4,30 @@ import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
+
 
 const FinishPage = () => {
  const navigation = useNavigation();
+ const { userData } = useData();
+
+ const handleSubmit = async () => {
+    try {
+        const response = await fetch('http://localhost:3001/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+        });
+
+        const result = await response.json();
+        console.log('Data submitted:', result);
+        navigation.navigate("Dashboard");
+    } catch (error) {
+        console.error('Error submitting data:', error);
+    }
+};
 
  return (
     <GradientContainer style={styles.container}>
@@ -37,7 +58,7 @@ const FinishPage = () => {
 
    <SecondaryButton
     style={styles.startButton}
-    onPress={() => navigation.navigate("Dashboard")}
+    onPress={() => handleSubmit()}
     title="Bring Me Back Home!"
    />
   </GradientContainer>

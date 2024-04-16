@@ -49,6 +49,7 @@ import GovernmentIncome from "./screens/GovernmentIncome";
 import ExpenseContinue from "./screens/ExpenseContinue";
 import BusinessPage from "./screens/BusinessPage";
 import Dashboard from "./screens/Dashboard";
+import { DataProvider } from "./components/DataProvider";
 
 async function loadFonts() {
  await Font.loadAsync({
@@ -61,259 +62,261 @@ function App() {
  loadFonts();
 
  return (
-  <NavigationContainer>
-   <Stack.Navigator
-    initialRouteName="SplashScreen"
-    screenOptions={{
-     headerStyle: {
-      backgroundColor: "#fff",
-     },
-     headerTintColor: "#000",
-     headerTitleStyle: {
-      fontWeight: "bold",
-     },
-    }}
-   >
-    <Stack.Screen
-     name="Onboarding_1"
-     component={Onboarding_1}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="Onboarding_2"
-     component={Onboarding_2}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="Onboarding_3"
-     component={Onboarding_3}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="VerifyPhoneNumber"
-     component={VerifyPhoneNumber}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="CodeSent"
-     component={CodeSent}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="VerificationComplete"
-     component={VerificationComplete}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="VerifyEmail"
-     component={VerifyEmail}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="VerifyEmail2"
-     component={VerifyEmail2}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="EmailVerified"
-     component={EmailVerified}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="CreatePassword"
-     component={CreatePassword}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="PasswordCreated"
-     component={PasswordCreated}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="TellUsMore"
-     component={TellUsMore}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="TellUsMore2"
-     component={TellUsMore2}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="AllDone"
-     component={AllDone}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="ProvideInfoScreen"
-     component={ProvideInfoScreen}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="SINVerificationScreen"
-     component={SINVerificationScreen}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="MartialStatus"
-     component={MartialStatus}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="DependentsPage"
-     component={DependentsPage}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="Dependents"
-     component={Dependents}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="ConsentPage"
-     component={ConsentPage}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="LetsContinue"
-     component={LetsContinue}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="EmploymentStatus"
-     component={EmploymentStatus}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="EmploymentIncome"
-     component={EmploymentIncome}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="SelfEmploymentIncome"
-     component={SelfEmploymentIncome}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="InvestmentIncome"
-     component={InvestmentIncome}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="RegisteredInvestmentAccounts"
-     component={RegisteredInvestmentAccounts}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="GovernmentIncome"
-     component={GovernmentIncome}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="ExpenseContinue"
-     component={ExpenseContinue}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="BusinessPage"
-     component={BusinessPage}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="LetsFinish"
-     component={LetsFinish}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="Charity"
-     component={Charity}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="DeductionLimit"
-     component={DeductionLimit}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="CapitalGains"
-     component={CapitalGains}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="CapitalGains2"
-     component={CapitalGains2}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="FinishPage"
-     component={FinishPage}
-     options={{ headerShown: false }}
-    />
-
-    <Stack.Screen
-     name="Landing"
-     component={LandingPage}
-     options={{
-      headerTitle: () => (
-       <View style={styles.headerTitle}>
-        <Image
-         style={styles.logo}
-         resizeMode="contain"
-         source={require("./assets/logo.png")} // Ensure this path is correct
-        />
-        <Text style={styles.headerText}>FileME</Text>
-       </View>
-      ),
-      headerRight: () => (
-       <Button
-        onPress={() => alert("This is a button!")}
-        title="Info"
-        color="#000"
-       />
-      ),
+  <DataProvider>
+   <NavigationContainer>
+    <Stack.Navigator
+     initialRouteName="SplashScreen"
+     screenOptions={{
+      headerStyle: {
+       backgroundColor: "#fff",
+      },
+      headerTintColor: "#000",
+      headerTitleStyle: {
+       fontWeight: "bold",
+      },
      }}
-    />
-    <Stack.Screen
-     name="Signup"
-     component={SignupScreen}
-     options={{ title: "Create Account" }}
-    />
-    <Stack.Screen
-     name="Login"
-     component={LoginScreen}
-     options={{ headerShown: false }}
-    />
-    <Stack.Screen
-     name="EmailVerificationScreen"
-     component={EmailVerificationScreen}
-     options={{ title: "EmailVerificationScreen", headerLeft: null }}
-    />
-    <Stack.Screen
-     name="MainPage"
-     component={MainPage}
-     options={{ title: "Dashboard", headerLeft: null }}
-    />
-    <Stack.Screen
-     name="MyAccount"
-     component={MyAccount}
-     options={{ title: "Dashboard", headerLeft: null }}
-    />
-    <Stack.Screen
-     name="Dashboard"
-     component={Dashboard}
-     options={{ headerShown: false }}
-    />
-   </Stack.Navigator>
-  </NavigationContainer>
+    >
+     <Stack.Screen
+      name="Onboarding_1"
+      component={Onboarding_1}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="Onboarding_2"
+      component={Onboarding_2}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="Onboarding_3"
+      component={Onboarding_3}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="VerifyPhoneNumber"
+      component={VerifyPhoneNumber}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="CodeSent"
+      component={CodeSent}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="VerificationComplete"
+      component={VerificationComplete}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="VerifyEmail"
+      component={VerifyEmail}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="VerifyEmail2"
+      component={VerifyEmail2}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="EmailVerified"
+      component={EmailVerified}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="CreatePassword"
+      component={CreatePassword}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="PasswordCreated"
+      component={PasswordCreated}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="TellUsMore"
+      component={TellUsMore}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="TellUsMore2"
+      component={TellUsMore2}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="AllDone"
+      component={AllDone}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="ProvideInfoScreen"
+      component={ProvideInfoScreen}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="SINVerificationScreen"
+      component={SINVerificationScreen}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="MartialStatus"
+      component={MartialStatus}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="DependentsPage"
+      component={DependentsPage}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="Dependents"
+      component={Dependents}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="ConsentPage"
+      component={ConsentPage}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="LetsContinue"
+      component={LetsContinue}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="EmploymentStatus"
+      component={EmploymentStatus}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="EmploymentIncome"
+      component={EmploymentIncome}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="SelfEmploymentIncome"
+      component={SelfEmploymentIncome}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="InvestmentIncome"
+      component={InvestmentIncome}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="RegisteredInvestmentAccounts"
+      component={RegisteredInvestmentAccounts}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="GovernmentIncome"
+      component={GovernmentIncome}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="ExpenseContinue"
+      component={ExpenseContinue}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="BusinessPage"
+      component={BusinessPage}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="LetsFinish"
+      component={LetsFinish}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="Charity"
+      component={Charity}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="DeductionLimit"
+      component={DeductionLimit}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="CapitalGains"
+      component={CapitalGains}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="CapitalGains2"
+      component={CapitalGains2}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="FinishPage"
+      component={FinishPage}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="Landing"
+      component={LandingPage}
+      options={{
+       headerTitle: () => (
+        <View style={styles.headerTitle}>
+         <Image
+          style={styles.logo}
+          resizeMode="contain"
+          source={require("./assets/logo.png")} // Ensure this path is correct
+         />
+         <Text style={styles.headerText}>FileME</Text>
+        </View>
+       ),
+       headerRight: () => (
+        <Button
+         onPress={() => alert("This is a button!")}
+         title="Info"
+         color="#000"
+        />
+       ),
+      }}
+     />
+     <Stack.Screen
+      name="Signup"
+      component={SignupScreen}
+      options={{ title: "Create Account" }}
+     />
+     <Stack.Screen
+      name="Login"
+      component={LoginScreen}
+      options={{ headerShown: false }}
+     />
+     <Stack.Screen
+      name="EmailVerificationScreen"
+      component={EmailVerificationScreen}
+      options={{ title: "EmailVerificationScreen", headerLeft: null }}
+     />
+     <Stack.Screen
+      name="MainPage"
+      component={MainPage}
+      options={{ title: "Dashboard", headerLeft: null }}
+     />
+     <Stack.Screen
+      name="MyAccount"
+      component={MyAccount}
+      options={{ title: "Dashboard", headerLeft: null }}
+     />
+     <Stack.Screen
+      name="Dashboard"
+      component={Dashboard}
+      options={{ headerShown: false }}
+     />
+    </Stack.Navigator>
+   </NavigationContainer>
+  </DataProvider>
  );
 }
 
