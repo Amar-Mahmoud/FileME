@@ -11,57 +11,57 @@ import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
+import GradientContainer from "../components/GradientContainer";
 
 const SINVerificationScreen = () => {
  const navigation = useNavigation();
  const [sin, setSin] = useState("");
 
  return (
-  <View style={styles.container}>
-   <TouchableOpacity
-    style={styles.backButton}
-    onPress={() => navigation.goBack()}
-   >
-    <Image
-     resizeMode="contain"
-     source={require("../assets/back_icon.png")}
-    />
-   </TouchableOpacity>
+  <GradientContainer style={styles.container}>
+   <View style={{justifyContent: "space-between", flex: 1}}>
+    <TouchableOpacity
+     style={styles.backButton}
+     onPress={() => navigation.goBack()}
+    >
+     <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
+    </TouchableOpacity>
 
-   {/* Page Indicators */}
-   <View style={{justifyContent: "center"}}>
-   <View style={styles.indicatorContainer}>
-    <Image
-     style={styles.logo}
-     resizeMode="contain"
-     source={require("../assets/progress1.png")} // Path to your image
-    />
-   </View>
+    <View
+     style={{
+      flex: 1,
+      flexDirection: "column",
+     }}
+    >
+     <View style={styles.indicatorContainer}>
+      <Image resizeMode="contain" source={require("../assets/progress1.png")} />
+     </View>
 
-    <Text style={styles.title}>What is your Social Insurance Number?</Text>
-    <Text style={styles.subtitle}>We need your SIN for the tax process!</Text>
+     <View style={{ padding: 15 }}>
+      <Text style={styles.title}>What is your Social Insurance Number?</Text>
+      <Text style={styles.subtitle}>We need your SIN for the tax process!</Text>
 
-    <View style={styles.inputContainer}>
-     <Text style={styles.inputLabel}>SIN</Text>
-     <TextInput
-      style={styles.input}
-      value={sin}
-      onChangeText={setSin}
-      placeholder="123 456 789"
-      keyboardType="number-pad"
-     />
+      <View style={styles.inputContainer}>
+       <Text style={styles.inputLabel}>SIN</Text>
+       <TextInput
+        style={styles.input}
+        value={sin}
+        onChangeText={setSin}
+        placeholder="XXX-XXX-XXX"
+        keyboardType="number-pad"
+       />
+      </View>
+     </View>
     </View>
-   </View>
 
-   <CustomButton
-    style={styles.nextButton}
-    onPress={() => navigation.navigate("MartialStatus")}
-    title="Next"
-   />
-  </View>
+    <CustomButton
+     style={{...styles.nextButton, bottom: 0}}
+     onPress={() => navigation.navigate("MartialStatus")}
+     title="Next"
+    />
+   </View>
+  </GradientContainer>
  );
 };
-
-
 
 export default SINVerificationScreen;

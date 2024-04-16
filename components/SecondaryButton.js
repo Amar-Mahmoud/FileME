@@ -10,17 +10,18 @@ const SecondaryButton = ({ title, onPress }) => {
 };
 
 const styles = StyleSheet.create({
- button: {
-  backgroundColor: "#fff",
-  paddingVertical: 12,
-  paddingHorizontal: 50,
-  borderRadius: 5,
-  marginVertical: 10,
-  elevation: 8,
- },
+    button: {
+        backgroundColor: "#fff",
+        paddingVertical: 12,
+        paddingHorizontal: 50,
+        borderRadius: 5,
+        marginVertical: 10,
+        marginHorizontal: 5,
+        elevation: 8,
+       },
  buttonText: {
   color: "#007B5D",
-  fontSize: 20,
+  fontSize: 16,
   fontWeight: "bold",
   alignSelf: "center",
  },

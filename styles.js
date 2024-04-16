@@ -19,7 +19,7 @@ export default StyleSheet.create({
  },
 
  title: {
-  fontSize: 34,
+  fontSize: 32,
   fontWeight: "bold",
   textAlign: "left",
  },
@@ -30,7 +30,7 @@ export default StyleSheet.create({
   color: "gray",
  },
  headline: {
-  fontSize: 34,
+  fontSize: 30,
   fontWeight: "bold",
   textAlign: "center",
  },
@@ -40,6 +40,12 @@ export default StyleSheet.create({
   fontWeight: "bold",
   color: "#3A45AD",
  },
+ subHeadline2: {
+    fontSize: 14,
+    textAlign: "center",
+    fontWeight: "normal",
+    color: "black",
+   },
  inputContainer: {
   marginBottom: 20,
   marginTop: 20,
@@ -55,7 +61,7 @@ export default StyleSheet.create({
   borderColor: "lightgray",
   borderRadius: 10,
   paddingHorizontal: 10,
-  fontSize: 18,
+  fontSize: 14,
   backgroundColor: "#fff",
   marginTop: 5,
   
@@ -78,7 +84,7 @@ export default StyleSheet.create({
  indicatorContainer: {
   flexDirection: "row",
   justifyContent: "center",
-  top: -35,
+  top: 50,
   paddingVertical: 10,
  },
  indicator: {

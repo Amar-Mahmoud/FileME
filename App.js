@@ -23,6 +23,22 @@ import EmploymentStatus from "./screens/EmploymentStatus";
 import EmploymentIncome from "./screens/EmploymentIncome";
 import SelfEmploymentIncome from "./screens/SelfEmploymentIncome";
 import InvestmentIncome from "./screens/InvestmentIncome";
+import VerifyPhoneNumber from "./screens/VerifyPhoneNumber";
+import CodeSent from "./screens/CodeSent";
+import VerificationComplete from "./screens/VerificationComplete";
+import VerifyEmail from "./screens/VerifyEmail";
+import VerifyEmail2 from "./screens/VerifyEmail2";
+import EmailVerified from "./screens/EmailVerified";
+import CreatePassword from "./screens/CreatePassword";
+import PasswordCreated from "./screens/PasswordCreated";
+import TellUsMore from "./screens/TellUsMore";
+import TellUsMore2 from "./screens/TellUsMore2";
+import AllDone from "./screens/AllDone";
+import LetsFinish from "./screens/LetsFinish";
+import Charity from "./screens/Charity";
+import DeductionLimit from "./screens/DeductionLimit";
+import CapitalGains from "./screens/CapitalGains";
+import CapitalGains2 from "./screens/CapitalGains2";
 
 const Stack = createNativeStackNavigator();
 
@@ -69,6 +85,63 @@ function App() {
     <Stack.Screen
      name="Onboarding_3"
      component={Onboarding_3}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="VerifyPhoneNumber"
+     component={VerifyPhoneNumber}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="CodeSent"
+     component={CodeSent}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="VerificationComplete"
+     component={VerificationComplete}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="VerifyEmail"
+     component={VerifyEmail}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="VerifyEmail2"
+     component={VerifyEmail2}
+     options={{ headerShown: false }}
+    />
+
+    <Stack.Screen
+     name="EmailVerified"
+     component={EmailVerified}
+     options={{ headerShown: false }}
+    />
+
+    <Stack.Screen
+     name="CreatePassword"
+     component={CreatePassword}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="PasswordCreated"
+     component={PasswordCreated}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="TellUsMore"
+     component={TellUsMore}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="TellUsMore2"
+     component={TellUsMore2}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="AllDone"
+     component={AllDone}
      options={{ headerShown: false }}
     />
     <Stack.Screen
@@ -150,6 +223,33 @@ function App() {
      component={BusinessPage}
      options={{ headerShown: false }}
     />
+    <Stack.Screen
+     name="LetsFinish"
+     component={LetsFinish}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="Charity"
+     component={Charity}
+     options={{ headerShown: false }}
+    />
+    <Stack.Screen
+     name="DeductionLimit"
+     component={DeductionLimit}
+     options={{ headerShown: false }}
+    />
+
+    <Stack.Screen
+     name="CapitalGains"
+     component={CapitalGains}
+     options={{ headerShown: false }}
+    />
+
+    <Stack.Screen
+     name="CapitalGains2"
+     component={CapitalGains2}
+     options={{ headerShown: false }}
+    />
 
     <Stack.Screen
      name="Landing"
@@ -182,10 +282,7 @@ function App() {
     <Stack.Screen
      name="Login"
      component={LoginScreen}
-     options={{
-      title: "Sign In",
-      headerBackTitle: "Back", // Custom back button title (iOS mostly)
-     }}
+     options={{ headerShown: false }}
     />
     <Stack.Screen
      name="EmailVerificationScreen"

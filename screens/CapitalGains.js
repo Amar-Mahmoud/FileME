@@ -14,12 +14,12 @@ import CustomButton from "../components/CustomButton";
 import GradientContainer from "../components/GradientContainer";
 import styles from "../styles";
 
-const RegisteredInvestmentAccounts = () => {
+const DeductionLimit = () => {
  const navigation = useNavigation();
- const [rrspcontrib, setRRSPContrib] = useState();
- const [rrspwith, setRRSPWith] = useState();
- const [pension, setPension] = useState();
- const [pensionWithdrawl, setPensionWithdrawl] = useState();
+
+ const [totalprofit, setTotalProfit] = useState();
+ const [totalloss, setTotalLoss] = useState();
+
  return (
   <GradientContainer style={styles.container}>
    <View style={{ justifyContent: "space-between", flex: 1 }}>
@@ -37,55 +37,34 @@ const RegisteredInvestmentAccounts = () => {
      }}
     >
      <View style={styles.indicatorContainer}>
-      <Image
-       resizeMode="contain"
-       source={require("../assets/progress_2_3.png")}
-      />
+      <Image resizeMode="contain" source={require("../assets/progress3.png")} />
      </View>
      <ScrollView contentContainerStyle={{}}>
       <View style={{ padding: 15 }}>
-       <Text style={styles.title}>What is your Pension & RRSP Amounts?</Text>
+       <Text style={styles.title}>Do you have any Capital Gains?</Text>
        <Text style={styles.subtitle}>
-        How much did you contribute to your pension and RRSP? If you have, how
-        much did you TAKE OUT of these accounts?
+        Did you sell any stocks for a PROFIT or a LOSS?
        </Text>
 
        <View style={styles.inputContainer}>
         <Text style={styles.inputLabel}>
-         Your CONTRIBUTION to RRSP Account?
+         What is the TOTAL PROFIT in your Stock Sales?
         </Text>
         <TextInput
          style={styles.input}
-         value={rrspcontrib}
-         onChangeText={setRRSPContrib}
+         value={totalprofit}
+         onChangeText={setTotalProfit}
          placeholder=""
          keyboardType="number-pad"
         />
-        <Text style={styles.inputLabel}>Your WITHDRAWL from RRSP Account?</Text>
-        <TextInput
-         style={styles.input}
-         value={rrspwith}
-         onChangeText={setRRSPWith}
-         placeholder=""
-         keyboardType="number-pad"
-        />
+
         <Text style={styles.inputLabel}>
-         Your CONTRIBUTION to Pension Account?
+         What is the TOTAL LOSS in your Stock Sales?
         </Text>
         <TextInput
          style={styles.input}
-         value={pension}
-         onChangeText={setPension}
-         placeholder=""
-         keyboardType="number-pad"
-        />
-        <Text style={styles.inputLabel}>
-         Your WITHDRAWAL from Pension Account?{" "}
-        </Text>
-        <TextInput
-         style={styles.input}
-         value={pensionWithdrawl}
-         onChangeText={setPensionWithdrawl}
+         value={totalloss}
+         onChangeText={setTotalLoss}
          placeholder=""
          keyboardType="number-pad"
         />
@@ -97,7 +76,7 @@ const RegisteredInvestmentAccounts = () => {
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
      onPress={() => {
-      navigation.navigate("GovernmentIncome");
+      navigation.navigate("CapitalGains2");
      }}
      title="Next"
     />
@@ -106,4 +85,4 @@ const RegisteredInvestmentAccounts = () => {
  );
 };
 
-export default RegisteredInvestmentAccounts;
+export default DeductionLimit;

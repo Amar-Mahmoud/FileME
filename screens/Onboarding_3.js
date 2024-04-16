@@ -3,12 +3,13 @@ import { View, StyleSheet, Image, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
+import GradientContainer from "../components/GradientContainer";
 
 const Onboarding_3 = () => {
  const navigation = useNavigation();
 
  return (
-  <View style={styles.container}>
+  <GradientContainer style={styles.container}>
    {/* This view is for the status bar, skip this if you already have it handled */}
    <View style={styles.statusBarPlaceholder} />
 
@@ -34,10 +35,10 @@ const Onboarding_3 = () => {
     </Text>
    </View>
 
-   <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+   <View style={{ flexDirection: "row", justifyContent : "space-evenly"}}>
     <CustomButton
      style={styles.startButton}
-     onPress={() => navigation.navigate("ProvideInfoScreen")}
+     onPress={() => navigation.navigate("VerifyPhoneNumber")}
      title="Register"
     />
     <CustomButton
@@ -46,7 +47,7 @@ const Onboarding_3 = () => {
      title="Sign in"
     />
    </View>
-  </View>
+  </GradientContainer>
  );
 };
 
