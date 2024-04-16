@@ -12,10 +12,18 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
+
 
 const EmploymentStatus = () => {
  const navigation = useNavigation();
- const [employed, setEmployed] = useState("");
+ const { userData, updateUserData } = useData();
+ const [employed, setEmployed] = React.useState(userData.employed || false);
+
+ const handleSave = () => {
+  updateUserData({ employed });
+  navigation.navigate("EmploymentIncome");
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -27,14 +35,11 @@ const EmploymentStatus = () => {
    </TouchableOpacity>
 
    <View style={{ justifyContent: "center", margin: "auto" }}>
-
-
     <Text style={styles.title}>What is your Employment Status?</Text>
     <Text style={styles.subtitle}>
      Are you working? And if you are, are you salaried or commissioned
     </Text>
 
-    
     <View style={styles.inputContainer}>
      <SecondaryButton
       onPress={() => {
@@ -54,7 +59,7 @@ const EmploymentStatus = () => {
    <CustomButton
     style={styles.startButton}
     onPress={() => {
-     navigation.navigate("EmploymentIncome");
+     handleSave();
     }}
     title="Next"
    />

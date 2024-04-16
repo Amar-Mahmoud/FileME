@@ -12,7 +12,8 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
-import { useData } from "../context/DataContext";
+import { useData } from "../components/DataProvider";
+
 
 const MartialStatus = () => {
  const navigation = useNavigation();
@@ -20,7 +21,7 @@ const MartialStatus = () => {
  const [married, setMarried] = React.useState(userData.married || false);
 
  const handleSave = () => {
-  updateUserData({ email });
+  updateUserData({ married });
   navigation.navigate("DependentsPage")
  };
 

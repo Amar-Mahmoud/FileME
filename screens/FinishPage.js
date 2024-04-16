@@ -13,21 +13,20 @@ const FinishPage = () => {
 
  const handleSubmit = async () => {
     try {
-        const response = await fetch('http://localhost:3001/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-        });
-
-        const result = await response.json();
-        console.log('Data submitted:', result);
-        navigation.navigate("Dashboard");
+     const response = await fetch("http://localhost:3001/fileTaxes", {
+      method: "POST",
+      headers: {
+       "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+     });
+     navigation.navigate("Dashboard");
+     const result = await response.json();
+     console.log("Data submitted:", result);
     } catch (error) {
-        console.error('Error submitting data:', error);
+     console.error("Error submitting data:", error);
     }
-};
+   };
 
  return (
     <GradientContainer style={styles.container}>

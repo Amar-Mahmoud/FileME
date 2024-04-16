@@ -29,45 +29,38 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   dob: { type: Date, required: true },
-  married : { type: Boolean, required: false },
-  sin: { type: String, required: false, match: [/^\d{9}$/, 'Invalid SIN number.'] },
-  addressStreetAddress1: { type: String, required: false },
-  addressStreetAddress2: { type: String },
-  addressCity: { type: String, required: false },
-  addressPostalCode: { type: String, required: false },
-  dependentFullName: { type: String, required: false },
-  dependentSIN: { type: String, required: false, match: [/^\d{9}$/, 'Invalid SIN number.'] },
-  dependentDateOfBirth: { type: Date, required: false },
-  dependentRelationshipToUser: {
-    type: String,
-    required: false,
-    enum: ['spouse', 'child', 'elder', 'impaired_dependent']
-  },
-  dependentIncome: { type: Number },
-  dependentEducationCosts: { type: Number },
-  dependentResidencyStatus: {
-    type: String,
-    required: false,
-    enum: ['full_year', 'partial_year', 'none']
-  },
-  vehicleTotalExpenses: { type: Number },
-  travelTotalExpenses: { type: Number },
-  businessGrossIncome: { type: Number },
-  businessExpenses: { type: Number },
-  businessNetIncome: { type: Number },
-  investmentInterestProfit: { type: Number },
-  investmentInterestLost: { type: Number },
-  investmentDividendsProfit: { type: Number },
-  investmentDividendsLoss: { type: Number },
-  capitalGainsPropertyProfit: { type: Number },
-  capitalGainsPropertyLoss: { type: Number },
-  capitalGainsStocksProfit: { type: Number },
-  capitalGainsStocksLoss: { type: Number },
-  unusedRRSPContributions: { type: Number },
-  tuitionCarryforwards: { type: Number },
 });
 
-// Encrypt sensitive information before saving to the database
+
+const taxSchema = new mongoose.Schema({
+  email: { type: String, required: true },
+  consent : { type: Boolean, required: false },
+  employed : { type: Boolean, required: true },
+  sin: { type: String, required: false },
+  income: { type: Number, required: true },
+  selfEmploymentIncome : { type: Number, required: true },
+  selfEmploymentExpenses : { type: Number, required: true },
+  interestGain : { type: Number, required: true },
+  interestLoss : { type: Number, required: true },
+  dividendGain : { type: Number, required: true },
+  dividendLoss : { type: Number, required: true },
+  rrspcontrib : { type: Number, required: true },
+  rrspwith : { type: Number, required: true },
+  pensionWithdrawl : { type: Number, required: true },
+  pension: { type: Number, required: true },
+  govIncome: { type: Number, required: true },
+  business: { type: Boolean, required: true },
+  donation: { type: Number, required: true },
+  tuition: { type: Number, required: true },
+  deduc: { type: Number, required: true },
+  totalprofit: { type: Number, required: true },
+  totalloss: { type: Number, required: true },
+  totalprofitproperty : { type: Number, required: true },
+  totallossproperty : { type: Number, required: true },
+
+
+});
+
 userSchema.pre("save", async function (next) {
  if (!secretKey) {
   throw new Error("Encryption key is not set!");
@@ -107,6 +100,8 @@ userSchema.pre("save", async function (next) {
 });
 
 const User = mongoose.model("User", userSchema);
+const Tax = mongoose.model("Tax", taxSchema);
+
 
 app.use(express.json());
 
@@ -126,6 +121,24 @@ app.post("/signup", async (req, res) => {
   }
  }
 });
+
+app.post("/fileTaxes", async (req, res) => {
+  try {
+   const newTax = new Tax(req.body);
+  await newTax.save();
+
+   res.status(201).json({ message: "Tax Added Successfuly" });
+  } catch (error) {
+   console.log(error);
+   if (error.code === 11000) {
+    res.status(400).json({
+     message: "Account already exists with this email, try logging in instead.",
+    });
+   } else {
+    res.status(500).json({ message: error.message });
+   }
+  }
+ });
 
 app.post("/login", async (req, res) => {
  try {

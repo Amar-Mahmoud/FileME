@@ -13,10 +13,18 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import GradientContainer from "../components/GradientContainer";
 import styles from "../styles";
+import { useData } from "../components/DataProvider";
 
 const RegisteredInvestmentAccounts = () => {
  const navigation = useNavigation();
-const [donation, setDonation] = useState();
+    const { userData, updateUserData } = useData();
+const [donation, setDonation] = useState(userData.donation || "");
+
+const handleSave = () => {
+    updateUserData({ donation });
+    navigation.navigate("DeductionLimit");
+}
+
  return (
   <GradientContainer style={styles.container}>
    <View style={{ justifyContent: "space-between", flex: 1 }}>
@@ -64,7 +72,7 @@ const [donation, setDonation] = useState();
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
      onPress={() => {
-      navigation.navigate("DeductionLimit");
+      handleSave();
      }}
      title="Next"
     />

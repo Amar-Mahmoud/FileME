@@ -12,11 +12,19 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import GradientContainer from "../components/GradientContainer";
 import styles from "../styles";
+import { useData } from "../components/DataProvider";
 
 const EmploymentIncome = () => {
  const navigation = useNavigation();
- const [income, setIncome] = useState();
- const [expenses, setExpenses] = useState();
+ const { userData, updateUserData } = useData();
+ const [selfEmploymentIncome, setSelfEmploymentIncome] = React.useState(userData.selfEmploymentIncome || "");
+ const [selfEmploymentExpenses, setSelfEmploymentExpenses] = React.useState(userData.selfEmploymentIncome || "");
+
+ const handleSave = () => {
+  updateUserData({ selfEmploymentIncome, selfEmploymentExpenses});
+  navigation.navigate("InvestmentIncome");
+
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -52,8 +60,8 @@ const EmploymentIncome = () => {
        <Text style={styles.inputLabel}>Employment Income</Text>
        <TextInput
         style={styles.input}
-        value={income}
-        onChangeText={setIncome}
+        value={selfEmploymentIncome}
+        onChangeText={setSelfEmploymentIncome}
         placeholder=""
         keyboardType="number-pad"
        />
@@ -62,8 +70,8 @@ const EmploymentIncome = () => {
        </Text>
        <TextInput
         style={styles.input}
-        value={expenses}
-        onChangeText={setExpenses}
+        value={selfEmploymentExpenses}
+        onChangeText={setSelfEmploymentExpenses}
         placeholder=""
         keyboardType="number-pad"
        />
@@ -75,7 +83,7 @@ const EmploymentIncome = () => {
    <CustomButton
     style={{ ...styles.nextButton, bottom: 0 }}
     onPress={() => {
-     navigation.navigate("InvestmentIncome");
+        handleSave();
     }}
     title="Next"
    />

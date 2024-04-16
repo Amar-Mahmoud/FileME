@@ -13,12 +13,19 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import GradientContainer from "../components/GradientContainer";
 import styles from "../styles";
+import { useData } from "../components/DataProvider";
 
 const DeductionLimit = () => {
  const navigation = useNavigation();
+ const { userData, updateUserData } = useData();
 
- const [totalprofit, setTotalProfit] = useState();
- const [totalloss, setTotalLoss] = useState();
+ const [totalprofitproperty, setTotalProfitProperty] = useState(userData.totalprofitproperty || "");
+ const [totallossproperty, setTotalLossProperty] = useState(userData.totallossproperty || "");
+
+ const handleSave = () => {
+  updateUserData({ totalprofitproperty, totallossproperty });
+  navigation.navigate("FinishPage");
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -52,8 +59,8 @@ const DeductionLimit = () => {
         </Text>
         <TextInput
          style={styles.input}
-         value={totalprofit}
-         onChangeText={setTotalProfit}
+         value={totalprofitproperty}
+         onChangeText={setTotalProfitProperty}
          placeholder=""
          keyboardType="number-pad"
         />
@@ -63,8 +70,8 @@ const DeductionLimit = () => {
         </Text>
         <TextInput
          style={styles.input}
-         value={totalloss}
-         onChangeText={setTotalLoss}
+         value={totallossproperty}
+         onChangeText={setTotalLossProperty}
          placeholder=""
          keyboardType="number-pad"
         />
@@ -76,7 +83,7 @@ const DeductionLimit = () => {
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
      onPress={() => {
-      navigation.navigate("FinishPage");
+      handleSave();
      }}
      title="Next"
     />

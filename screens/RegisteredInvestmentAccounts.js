@@ -13,13 +13,26 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import GradientContainer from "../components/GradientContainer";
 import styles from "../styles";
+import { useData } from "../components/DataProvider";
 
 const RegisteredInvestmentAccounts = () => {
  const navigation = useNavigation();
- const [rrspcontrib, setRRSPContrib] = useState();
- const [rrspwith, setRRSPWith] = useState();
- const [pension, setPension] = useState();
- const [pensionWithdrawl, setPensionWithdrawl] = useState();
+ const { userData, updateUserData } = useData();
+
+ const [rrspcontrib, setRRSPContrib] = React.useState(
+  userData.rrspcontrib || ""
+ );
+ const [rrspwith, setRRSPWith] = React.useState(userData.rrspwith || "");
+ const [pension, setPension] = React.useState(userData.pension || "");
+ const [pensionWithdrawl, setPensionWithdrawl] = React.useState(
+  userData.pensionWithdrawl || ""
+ );
+
+ const handleSave = () => {
+  updateUserData({ rrspcontrib, rrspwith, pension, pensionWithdrawl });
+  navigation.navigate("GovernmentIncome");
+ };
+
  return (
   <GradientContainer style={styles.container}>
    <View style={{ justifyContent: "space-between", flex: 1 }}>
@@ -97,7 +110,7 @@ const RegisteredInvestmentAccounts = () => {
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
      onPress={() => {
-      navigation.navigate("GovernmentIncome");
+      handleSave();
      }}
      title="Next"
     />

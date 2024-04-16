@@ -12,13 +12,13 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
-import { useData } from "../context/DataContext";
+import { useData } from "../components/DataProvider";
 
 
 const SINVerificationScreen = () => {
  const navigation = useNavigation();
  const { userData, updateUserData } = useData();
- const [sin, setSIN] = React.useState(userData.sin || "");
+ const [sin, setSin] = React.useState(userData.sin || "");
 
  const handleSave = () => {
   updateUserData({ sin });

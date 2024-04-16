@@ -13,9 +13,17 @@ import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
 
+import { useData } from "../components/DataProvider";
+
 const ConsentPage = () => {
  const navigation = useNavigation();
- const [consent, setConsent] = useState(false);
+   const { userData, updateUserData } = useData();
+ const [consent, setConsent] = React.useState(userData.consent || false);
+
+ const handleSave = () => {
+  updateUserData({ consent });
+  navigation.navigate("LetsContinue");
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -60,16 +68,16 @@ const ConsentPage = () => {
         title="Yes"
        />
       </View>
-      </View>
-      </View>
+     </View>
+    </View>
 
-      <CustomButton
-       style={{ ...styles.nextButton, bottom: 0 }}
-       onPress={() => {
-        navigation.navigate("LetsContinue");
-       }}
-       title="Save"
-      />
+    <CustomButton
+     style={{ ...styles.nextButton, bottom: 0 }}
+     onPress={() => {
+      handleSave();
+     }}
+     title="Save"
+    />
    </View>
   </GradientContainer>
  );

@@ -13,13 +13,20 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
 
 const GovernmentIncome = () => {
  const navigation = useNavigation();
- const [govIncome, setGovIncome] = useState();
+ const { userData, updateUserData } = useData();
+ const [govIncome, setGovIncome] = React.useState(userData.govIncome | "");
+
+ const handleSave = () => {
+  updateUserData({ govIncome });
+  navigation.navigate("ExpenseContinue");
+ };
 
  return (
-    <GradientContainer style={styles.container}>
+  <GradientContainer style={styles.container}>
    <View style={{ justifyContent: "space-between", flex: 1 }}>
     <TouchableOpacity
      style={styles.backButton}
@@ -63,7 +70,7 @@ const GovernmentIncome = () => {
    <CustomButton
     style={{ ...styles.nextButton, bottom: 0 }}
     onPress={() => {
-     navigation.navigate("ExpenseContinue");
+     handleSave();
     }}
     title="Next"
    />

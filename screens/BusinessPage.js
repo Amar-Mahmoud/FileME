@@ -14,10 +14,13 @@ import SecondaryButton from "../components/SecondaryButton";
 import RadioForm from "react-native-simple-radio-button";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
+
 
 const BusinessPage = () => {
  const navigation = useNavigation();
- const [business, setBusiness] = useState(false);
+ const { userData, updateUserData } = useData();
+ const [business, setBusiness] = useState(userData.business || false);
  const [formData, setFormData] = useState({
   business,
   homeofficeexpenses: 0,
@@ -27,11 +30,10 @@ const BusinessPage = () => {
   tools: 0,
  });
 
- const handleSubmit = () => {
-  // Process formData here or navigate to the next screen
-  console.log(formData);
-  // navigation.navigate('NextScreen', { formData }); // Example navigation
- };
+ const saveData = () => {
+    updateUserData(business, formData);
+    navigation.navigate("LetsFinish");
+    };
 
  // A function to update form data
  const handleInputChange = (name, value) => {
@@ -145,7 +147,7 @@ const BusinessPage = () => {
      <CustomButton
       style={{ ...styles.nextButton, bottom: 0 }}
       onPress={() => {
-       navigation.navigate("LetsFinish");
+         saveData();
       }}
       title="Next"
      />

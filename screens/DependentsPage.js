@@ -12,10 +12,22 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
 
 const DependentsPage = () => {
  const navigation = useNavigation();
- const [dependents, setDependents] = useState("");
+ const { userData, updateUserData } = useData();
+ const [dependents, setDependents] = React.useState();
+
+ const handleSave = () => {
+  updateUserData({ dependents });
+
+  if (dependents) {
+   navigation.navigate("Dependents");
+  } else {
+   navigation.navigate("ConsentPage");
+  }
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -39,7 +51,7 @@ const DependentsPage = () => {
 
      <View style={{ padding: 10 }}>
       <Text style={styles.title}>Do you have any Dependents?</Text>
-      <Text style={{...styles.subHeadline2, textAlign: "left"}}>
+      <Text style={{ ...styles.subHeadline2, textAlign: "left" }}>
        A dependent is someone you support financially, like a child or a family
        member who depends on you. For tax purposes, this could mean: Your
        children under 18 years of age. Any other relatives who rely on you for
@@ -50,7 +62,7 @@ const DependentsPage = () => {
        <SecondaryButton
         onPress={() => {
          setDependents(true);
-         navigation.navigate("Dependents");
+         handleSave();
         }}
         title="Add a Dependent"
        />
@@ -61,7 +73,7 @@ const DependentsPage = () => {
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
      onPress={() => {
-      navigation.navigate("ConsentPage");
+      handleSave();
      }}
      title="Next"
     />

@@ -13,13 +13,29 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
 
 const InvestmentIncome = () => {
  const navigation = useNavigation();
- const [interestGain, setInterestGain] = useState();
- const [interestLoss, setInterestLoss] = useState();
- const [dividendGain, setDividendGain] = useState();
- const [dividendLoss, setDividendLoss] = useState();
+ const { userData, updateUserData } = useData();
+
+ const [interestGain, setInterestGain] = React.useState(
+  userData.interestGain || ""
+ );
+ const [interestLoss, setInterestLoss] = React.useState(
+  userData.interestLoss || ""
+ );
+ const [dividendGain, setDividendGain] = React.useState(
+  userData.dividendGain || ""
+ );
+ const [dividendLoss, setDividendLoss] = React.useState(
+  userData.dividendLoss || ""
+ );
+
+ const handleSave = () => {
+  updateUserData({ interestGain, interestLoss, dividendGain, dividendLoss });
+  navigation.navigate("RegisteredInvestmentAccounts");
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -38,7 +54,10 @@ const InvestmentIncome = () => {
      }}
     >
      <View style={styles.indicatorContainer}>
-      <Image resizeMode="contain" source={require("../assets/progress_2_3.png")} />
+      <Image
+       resizeMode="contain"
+       source={require("../assets/progress_2_3.png")}
+      />
      </View>
      <ScrollView contentContainerStyle={{}}>
       <View style={{ padding: 15 }}>
@@ -89,7 +108,7 @@ const InvestmentIncome = () => {
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
      onPress={() => {
-      navigation.navigate("RegisteredInvestmentAccounts");
+      handleSave();
      }}
      title="Next"
     />

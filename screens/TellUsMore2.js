@@ -21,9 +21,19 @@ const TellUsMore2 = () => {
  const [dob, setDOB] = React.useState(userData.dob || "");
 
  const handleSave = () => {
-  updateUserData({ dob });
-  navigation.navigate("AllDone")
- };
+    let date = new Date(dob);
+  
+    if (date instanceof Date) {
+      const dob2 = date.toISOString();
+      dob = dob2;
+      updateUserData({ dob });
+    } else {
+      console.error('dob is not a valid Date object');
+    }
+  
+    navigation.navigate("AllDone");
+  };
+  
 
  return (
   <GradientContainer style={styles.container}>
@@ -58,7 +68,7 @@ const TellUsMore2 = () => {
       }}
       value={dob}
       onChangeText={setDOB}
-      placeholder="MM/DD/YYYY"
+      placeholder="YYYY-MM-DD"
       keyboardType="number-pad"
      />
     </View>
@@ -67,7 +77,6 @@ const TellUsMore2 = () => {
    <View style={{ flexDirection: "column" }}>
     <Text style={{ ...styles.subHeadline2, textAlign: "left" }}>
      By registering, you agree to our {terms()} and {privacy()}
-
     </Text>
     <CustomButton
      style={styles.nextButton}

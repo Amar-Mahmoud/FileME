@@ -12,12 +12,17 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 
-//summarizes total
 const Summary = () => {
+
+ const net = incomeTotal - deductionTotal;
+ const perc = 0;       
+ const amt = net * perc;    
+
+
  
  return (
- 
- <Text style={styles.title}>Summary</Text>
+ <View>
+    <Text style={styles.title}>Summary</Text>
  
  <Text style={styles.in}>INCOME</Text>
  
@@ -48,28 +53,18 @@ const Summary = () => {
  
  <Text style={styles.in}>Total</Text>
  <Text style={styles.out}>${deductionTotal}</Text>
- 
- var net = incomeTotal - deductionTotal;
 
-//calculates the tax percentage based on net income.
-//15% if net is between $0 and $20000
-//20% if net is between $20001 and $40000
-//25% if net is between $40001 and $60000
-//30% if net is between $60001 and $80000
-//35% if net is between $80001 and $100000
-//40% if net is over $100001
- var perc = 0;            
                             
  <Text style={styles.in}>NET TAXABLE</Text>
  <Text style={styles.out}>${net}</Text>
  <Text style={styles.in}>Bracket</Text>
  <Text style={styles.out}>{perc}%</Text>
-
-//calculates the amount owed or refunded
- var amt = net * perc;
+ 
                             
  <Text style={styles.in}>DEBIT (CREDIT)</Text>
  <Text style={styles.out}>${amt}</Text>
+ </View>
+ )
  
  const styles = StyleSheet.create({
  

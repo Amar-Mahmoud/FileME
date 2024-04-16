@@ -12,10 +12,19 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
+
 
 const EmploymentIncome = () => {
  const navigation = useNavigation();
- const [income, setIncome] = useState();
+ const { userData, updateUserData } = useData();
+ const [income, setIncome] = React.useState(userData.income || "");
+
+ const handleSave = () => {
+  updateUserData({ income });
+  navigation.navigate("SelfEmploymentIncome");
+
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -63,7 +72,7 @@ const EmploymentIncome = () => {
    <CustomButton
     style={{ ...styles.nextButton, bottom: 0 }}
     onPress={() => {
-     navigation.navigate("SelfEmploymentIncome");
+        handleSave();
     }}
     title="Next"
    />
