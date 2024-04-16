@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
  View,
  Text,
@@ -19,8 +19,8 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const userData = await getUserData(); 
-        setUserData(userData);
+        const fetchedUserData = await getUserData(); // Corrected variable name
+        setUserData(fetchedUserData); // Set state variable correctly
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -146,7 +146,7 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
 
        <View style={styles.rowContainer}>
         <Text style={styles.in}>Investment Income - Dividens</Text>
-        <Text style={styles.out}>${userData.income.investmentIncome.dividendProfit}</Text>
+        <Text style={styles.out}>${userData.income.investmentIncome.dividendsProfit}</Text>
       </View>
  
       <View style={styles.rowContainer}>
