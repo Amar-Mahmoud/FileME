@@ -123,7 +123,11 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
   
       <Text style={styles.title}>Summary</Text>
 
+      <Text> </Text>
+
       <Text style={styles.in}>INCOME</Text>
+
+      <Text> </Text>
 
       <View style={styles.rowContainer}>
         <Text style={styles.in}>Employment</Text>
@@ -135,6 +139,36 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
         <Text style={styles.out}>${userData.income.selfEmployedIncome}</Text>
       </View>
 
+      <View style={styles.rowContainer}>
+        <Text style={styles.in}>Investment Income - Interest</Text>
+        <Text style={styles.out}>${userData.income.investmentIncome.interestProfit}</Text>
+      </View>
+
+       <View style={styles.rowContainer}>
+        <Text style={styles.in}>Investment Income - Dividens</Text>
+        <Text style={styles.out}>${userData.income.investmentIncome.dividendProfit}</Text>
+      </View>
+ 
+      <View style={styles.rowContainer}>
+        <Text style={styles.in}>Government Benefits</Text>
+        <Text style={styles.out}>${userData.income.governmentBenefits}</Text>
+      </View>
+
+      <View style={styles.rowContainer}>
+        <Text style={styles.in}>Pension</Text>
+        <Text style={styles.out}>${userData.income.pensionIncome}</Text>
+      </View>
+
+      <View style={styles.rowContainer}>
+        <Text style={styles.in}>RRSP</Text>
+        <Text style={styles.out}>${userData.income.rrspIncome}</Text>
+      </View>
+
+     <View style={styles.rowContainer}>
+        <Text style={styles.in}>Employment</Text>
+        <Text style={styles.out}>${userData.income.otherIncome}</Text>
+      </View>
+
       <Text style={styles.in}>Total</Text>
       <Text style={styles.out}>${incomeTotal}</Text>
 
@@ -142,9 +176,11 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
 
       <Text style={styles.in}>DEDUCTIONS</Text>
 
+      <Text> </Text>
+       
       <View style={styles.rowContainer}>
         <Text style={styles.in}>Business Expenses</Text>
-        <Text style={styles.out}>${expenses}</Text>
+        <Text style={styles.out}>${userData.receipts.employmentExpenses}</Text>
       </View>
 
       <View style={styles.rowContainer}>
@@ -152,17 +188,34 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
         <Text style={styles.out}>${other.charitableDonations}</Text>
       </View>
 
+       <View style={styles.rowContainer}>
+        <Text style={styles.in}>Other Deductions</Text>
+        <Text style={styles.out}>${other.charitableDonations}</Text>
+      </View>
+
+      <View style={styles.rowContainer}>
       <Text style={styles.in}>Total</Text>
       <Text style={styles.out}>${deductionTotal}</Text>
+      </View>
 
+      <Text> </Text>
+
+      <View style={styles.rowContainer}>
       <Text style={styles.in}>NET TAXABLE</Text>
       <Text style={styles.out}>${net}</Text>
+      </View>
 
+      <View style={styles.rowContainer}>
       <Text style={styles.in}>Bracket</Text>
       <Text style={styles.out}>{perc * 100}%</Text>
+      </View>
 
+      <Text> </Text>
+
+      <View style={styles.rowContainer}>
       <Text style={styles.in}>DEBIT (CREDIT)</Text>
       <Text style={styles.out}>${amt}</Text>
+      </View>
        
     </View>
   );
