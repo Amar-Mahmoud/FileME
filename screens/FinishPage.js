@@ -25,7 +25,7 @@ const FinishPage = () => {
 
    <SecondaryButton
     style={styles.startButton}
-    onPress={() => navigation.navigate("EmploymentStatus")}
+    onPress={() => navigation.navigate("Dashboard")}
     title="Bring Me Back Home!"
    />
   </View>

@@ -31,6 +31,7 @@ import RegisteredInvestmentAccounts from "./screens/RegisteredInvestmentAccounts
 import GovernmentIncome from "./screens/GovernmentIncome";
 import ExpenseContinue from "./screens/ExpenseContinue";
 import BusinessPage from "./screens/BusinessPage";
+import Dashboard from "./screens/Dashboard";
 
 async function loadFonts() {
  await Font.loadAsync({
@@ -201,6 +202,11 @@ function App() {
      name="MyAccount"
      component={MyAccount}
      options={{ title: "Dashboard", headerLeft: null }}
+    />
+    <Stack.Screen 
+    name="Dashboard"
+    component={Dashboard}
+    options={{ headerShown: false }}
     />
    </Stack.Navigator>
   </NavigationContainer>
