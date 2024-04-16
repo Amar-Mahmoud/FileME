@@ -24,7 +24,7 @@ const FinishPage = () => {
     <Image
      style={styles.logo}
      resizeMode="contain"
-     source={require("../assets/onboarding_1.png")} // Path to your image
+     source={require("../assets/onboarding_1.png")}
     />
 
    <View style={{ marginHorizontal: 5 }}>
