@@ -12,55 +12,63 @@ import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
+import GradientContainer from "../components/GradientContainer";
 
 const GovernmentIncome = () => {
  const navigation = useNavigation();
  const [govIncome, setGovIncome] = useState();
 
  return (
-  <View style={styles.container}>
-   <TouchableOpacity
-    style={styles.backButton}
-    onPress={() => navigation.goBack()}
-   >
-    <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
-   </TouchableOpacity>
-   <View style={styles.indicatorContainer}>
-    <Image
-     style={styles.logo}
-     resizeMode="contain"
-     source={require("../assets/progress_2_4.png")} // Path to your image
-    />
-   </View>
-   <ScrollView contentContainerStyle={{ justifyContent: "center" }}>
-    <Text style={styles.title}>Does the Government Give You Any Income?</Text>
-    <Text style={styles.subtitle}>
-     Do you receive from government programs like EI or social assistance?
-    </Text>
+    <GradientContainer style={styles.container}>
+   <View style={{ justifyContent: "space-between", flex: 1 }}>
+    <TouchableOpacity
+     style={styles.backButton}
+     onPress={() => navigation.goBack()}
+    >
+     <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
+    </TouchableOpacity>
 
-    <View style={styles.inputContainer}>
-     <Text style={styles.inputLabel}>Government Plan Income</Text>
-     <TextInput
-      style={styles.input}
-      value={govIncome}
-      onChangeText={setGovIncome}
-      placeholder="$ 0.00"
-      keyboardType="number-pad"
-     />
+    <View
+     style={{
+      flex: 1,
+      flexDirection: "column",
+     }}
+    >
+     <View style={styles.indicatorContainer}>
+      <Image
+       resizeMode="contain"
+       source={require("../assets/progress_2_5.png")}
+      />
+     </View>
+     <View style={{ padding: 15 }}>
+      <Text style={styles.title}>Does the Government Give You Any Income?</Text>
+      <Text style={styles.subtitle}>
+       Do you receive from government programs like EI or social assistance?
+      </Text>
+
+      <View style={styles.inputContainer}>
+       <Text style={styles.inputLabel}>Government Plan Income</Text>
+       <TextInput
+        style={styles.input}
+        value={govIncome}
+        onChangeText={setGovIncome}
+        placeholder="$ 0.00"
+        keyboardType="number-pad"
+       />
+      </View>
+     </View>
     </View>
-   </ScrollView>
+   </View>
 
    <CustomButton
-    style={styles.startButton}
+    style={{ ...styles.nextButton, bottom: 0 }}
     onPress={() => {
      navigation.navigate("ExpenseContinue");
     }}
     title="Next"
    />
-  </View>
+  </GradientContainer>
  );
 };
-
-
 
 export default GovernmentIncome;

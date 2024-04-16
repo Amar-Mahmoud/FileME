@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/CustomButton"; // Assuming this is your styled 'Next' button
 import RadioForm from "react-native-simple-radio-button"; // You might need to install this package
 import styles from "../styles";
+import GradientContainer from "../components/GradientContainer";
 
 const Dependents = () => {
  const navigation = useNavigation();
@@ -39,12 +40,10 @@ const Dependents = () => {
  ];
 
  const handleSubmit = () => {
-  // Process formData here or navigate to the next screen
   console.log(formData);
   // navigation.navigate('NextScreen', { formData }); // Example navigation
  };
 
- // A function to update form data
  const handleInputChange = (name, value) => {
   setFormData((prevState) => ({
    ...prevState,
@@ -53,76 +52,79 @@ const Dependents = () => {
  };
 
  return (
-  <ScrollView contentContainerStyle={styles.container}>
-   <TouchableOpacity
-    style={styles.backButton}
-    onPress={() => navigation.goBack()}
-   >
-    <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
-   </TouchableOpacity>
-   <ScrollView
-    contentContainerStyle={{ justifyContent: "center", marginTop: "25%", paddingVertical:20 }}
-    showsVerticalScrollIndicator="false"
-   >
-    <Text style={styles.subtitle}>Full Name:</Text>
+  <GradientContainer style={styles.container}>
+   <View style={{ justifyContent: "space-between", flex: 1 }}>
+    <TouchableOpacity
+     style={styles.backButton}
+     onPress={() => navigation.goBack()}
+    >
+     <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
+    </TouchableOpacity>
 
-    <TextInput
-     style={styles.input}
-     placeholder="Enter their Full Name"
-     value={formData.fullName}
-     onChangeText={(text) => handleInputChange("fullName", text)}
+    <ScrollView
+     contentContainerStyle={{
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "center"
+     }}
+    >
+     <View style={{ padding: 10 }}>
+      <View style={styles.inputContainer}>
+       <Text style={styles.inputLabel}>First and Last Name</Text>
+       <TextInput
+        style={styles.input}
+        value={formData.fullName}
+        onChangeText={(value) => handleInputChange("fullName", value)}
+        placeholder=""
+        keyboardType="number-pad"
+       />
+       <Text style={styles.inputLabel}>SIN</Text>
+       <TextInput
+        style={styles.input}
+        value={formData.sin}
+        onChangeText={(value) => handleInputChange("sin", value)}
+        placeholder="XXX-XXX-XXX"
+        keyboardType="number-pad"
+       />
+
+       <Text style={styles.inputLabel}>Date of Birth</Text>
+       <TextInput
+        style={styles.input}
+        value={formData.dob}
+        onChangeText={(value) => handleInputChange("dob", value)}
+        placeholder="MM/DD/YYYY"
+        keyboardType="number-pad"
+       />
+
+       <View style={styles.inputContainer}>
+        <RadioForm
+         radio_props={relationshipOptions}
+         initial={-1}
+         onPress={(value) => handleInputChange("relationship", value)}
+         buttonColor={"#2196f3"}
+         selectedButtonColor={"#2196f3"}
+        />
+       </View>
+
+       <Text style={styles.inputLabel}>Income</Text>
+       <TextInput
+        style={styles.input}
+        value={formData.income}
+        onChangeText={(value) => handleInputChange("income", value)}
+        placeholder=""
+        keyboardType="number-pad"
+       />
+      </View>
+     </View>
+    </ScrollView>
+
+    <CustomButton
+     style={{ ...styles.nextButton, bottom: 0 }}
+     onPress={() => navigation.navigate("MartialStatus")}
+     title="Next"
     />
-    <Text style={styles.subtitle}>SIN:</Text>
-
-    <TextInput
-     style={styles.input}
-     placeholder="SIN (Social Insurance Number)"
-     value={formData.sin}
-     onChangeText={(text) => handleInputChange("sin", text)}
-    />
-    <Text style={styles.subtitle}>Date of Birth:</Text>
-
-    <TextInput
-     style={styles.input}
-     placeholder="Date of Birth"
-     value={formData.dob}
-     onChangeText={(text) => handleInputChange("dob", text)}
-    />
-    <Text style={styles.subtitle}>Relationship to You</Text>
-    <RadioForm
-     radio_props={relationshipOptions}
-     initial={-1}
-     onPress={(value) => handleInputChange("relationship", value)}
-     buttonColor={"#2196f3"}
-     selectedButtonColor={"#2196f3"}
-    />
-    <Text style={styles.subtitle}> Income:</Text>
-
-    <TextInput
-     style={styles.input}
-     placeholder="Income"
-     value={formData.income}
-     onChangeText={(text) => handleInputChange("income", text)}
-    />
-
-    <Text style={styles.subtitle}> Education:</Text>
-
-    <TextInput
-     style={styles.input}
-     placeholder="Education Costs"
-     value={formData.educationCosts}
-     onChangeText={(text) => handleInputChange("educationCosts", text)}
-    />
-   </ScrollView>
-
-   <CustomButton
-    style={styles.startButton}
-    onPress={() => {
-     navigation.navigate("ConsentPage");
-    }}
-    title="Next"
-   />
-  </ScrollView>
+   </View>
+  </GradientContainer>
  );
 };
 

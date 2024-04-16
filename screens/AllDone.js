@@ -5,7 +5,7 @@ import SecondaryButton from "../components/SecondaryButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
 
-const Onboarding_3 = () => {
+const AllDone = () => {
  const navigation = useNavigation();
 
  return (
@@ -21,23 +21,24 @@ const Onboarding_3 = () => {
     <Image
      style={{ ...styles.logo, margintop: "30%" }}
      resizeMode="contain"
-     source={require("../assets/provideinfoscreen.png")}
+     source={require("../assets/congrats.png")}
     />
     <Text style={[styles.title, { textAlign: "center", fontSize: 24 }]}>
-     Let's Start
+     All Done!
     </Text>
     <Text style={[styles.subHeadline2]}>
-     First, we’ll start with your Personal infomation!
+     All Done! Your account has been created. You can start using the tax
+     software
     </Text>
    </View>
 
    <SecondaryButton
     style={styles.startButton}
-    onPress={() => navigation.navigate("SINVerificationScreen")}
-    title="Provide Your Info!"
+    onPress={() => navigation.navigate("ProvideInfoScreen")}
+    title="Continue"
    />
   </GradientContainer>
  );
 };
 
-export default Onboarding_3;
+export default AllDone;

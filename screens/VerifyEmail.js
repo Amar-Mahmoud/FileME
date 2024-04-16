@@ -13,9 +13,9 @@ import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
 
-const EmploymentStatus = () => {
+const VerifyEmail = () => {
  const navigation = useNavigation();
- const [employed, setEmployed] = useState("");
+ const [email, setEmail] = useState("");
 
  return (
   <GradientContainer style={styles.container}>
@@ -26,40 +26,41 @@ const EmploymentStatus = () => {
     <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
    </TouchableOpacity>
 
-   <View style={{ justifyContent: "center", margin: "auto" }}>
+   
 
+   <View style={{ justifyContent: "center", marginTop: "20%" }}>
+    <Text style={styles.title}>Let's verify your email</Text>
 
-    <Text style={styles.title}>What is your Employment Status?</Text>
-    <Text style={styles.subtitle}>
-     Are you working? And if you are, are you salaried or commissioned
-    </Text>
-
-    
     <View style={styles.inputContainer}>
-     <SecondaryButton
-      onPress={() => {
-       setEmployed(true);
-      }}
-      title="Employed"
-     />
-     <SecondaryButton
-      onPress={() => {
-       setEmployed(false);
-      }}
-      title="Not Employed"
+     <Text style={styles.inputLabel}>Your email</Text>
+
+     <TextInput
+      style={styles.input}
+      value={email}
+      onChangeText={setEmail}
+      placeholder=""
      />
     </View>
    </View>
 
    <CustomButton
-    style={styles.startButton}
-    onPress={() => {
-     navigation.navigate("EmploymentIncome");
-    }}
-    title="Next"
+    style={styles.nextButton}
+    onPress={() => navigation.navigate("VerifyEmail2", { email: email })}
+    title="Continue"
    />
   </GradientContainer>
  );
+
+ function signIn() {
+  return (
+   <Text
+    onPress={() => navigation.navigate("Login")}
+    style={{ fontWeight: "bold", fontSize: 14, marginTop: 5, color: "#3A45AD" }}
+   >
+    Sign in
+   </Text>
+  );
+ }
 };
 
-export default EmploymentStatus;
+export default VerifyEmail;

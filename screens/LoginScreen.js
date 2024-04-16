@@ -1,14 +1,28 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import {
+ View,
+ Text,
+ TextInput,
+ TouchableOpacity,
+ StyleSheet,
+ Image,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
+import styles from "../styles";
+import GradientContainer from "../components/GradientContainer";
+import Octicons from "react-native-vector-icons/Octicons";
 
 const LoginScreen = ({ navigation }) => {
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState("");
- const [message, setMessage] = useState(""); // State to store login messages
+
+ const [message, setMessage] = useState("");
+ const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
  const handleLogin = async () => {
-  setMessage(""); // Clear previous messages
+  setMessage("");
   try {
    const response = await fetch("http://localhost:3001/login", {
     method: "POST",
@@ -32,66 +46,55 @@ const LoginScreen = ({ navigation }) => {
  };
 
  return (
-  <View style={styles.container}>
-   <Text style={styles.label}>Email:</Text>
-   <TextInput
-    value={email}
-    onChangeText={setEmail}
-    style={styles.input}
-    autoCapitalize="none" // Ensure email address is entered in lower case
+  <GradientContainer style={styles.container}>
+   <TouchableOpacity
+    style={styles.backButton}
+    onPress={() => navigation.goBack()}
+   >
+    <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
+   </TouchableOpacity>
+
+   <View style={{ flex: 1, marginTop: "15%" }}>
+    <Text style={styles.title}>Sign in</Text>
+    <View
+     style={{
+      flexDirection: "row",
+      marginTop: 20,
+      alignItems: "center",
+     }}
+    >
+     <View style={{ flexDirection: "column" }}>
+      <Text style={styles.inputLabel}>Your email address/Phone number</Text>
+      <TextInput
+       style={{
+        ...styles.input,
+       }}
+       value={email}
+       onChangeText={setEmail}
+       placeholder=""
+      />
+      <Text style={{ ...styles.inputLabel, marginTop: 20 }}>Password</Text>
+
+      <TextInput
+       style={{
+        ...styles.input,
+       }}
+       value={password}
+       onChangeText={setPassword}
+       placeholder=""
+       secureTextEntry={!isPasswordVisible}
+      />
+     </View>
+    </View>
+   </View>
+
+   <CustomButton
+    style={styles.nextButton}
+    onPress={() => handleLogin()}
+    title="Sign in"
    />
-
-   <Text style={styles.label}>Password:</Text>
-   <TextInput
-    value={password}
-    onChangeText={setPassword}
-    secureTextEntry
-    style={styles.input}
-   />
-
-   <CustomButton title="Login" onPress={handleLogin} />
-
-   {/* Display message below the button */}
-   {message !== "" && <Text style={styles.message}>{message}</Text>}
-  </View>
+  </GradientContainer>
  );
 };
-
-const styles = StyleSheet.create({
- container: {
-  flex: 1,
-  justifyContent: "center",
-  padding: 20,
-  width: "100%", // Adjusted for full-width usability
-  alignSelf: "center",
- },
- label: {
-  marginVertical: 8,
-  fontSize: 16,
-  color: "#333",
-  fontWeight: "bold",
-  textTransform: "uppercase",
- },
- input: {
-  height: 50,
-  borderColor: "#ccc",
-  borderWidth: 1,
-  marginBottom: 20,
-  paddingHorizontal: 15, // Rounded corners
-  fontSize: 16,
-  backgroundColor: "#fff",
-  shadowColor: "#000",
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.1,
-  shadowRadius: 6,
-  elevation: 3,
- },
- message: {
-  color: "red", // Error or information messages in red
-  fontSize: 16,
-  marginTop: 20,
-  textAlign: "center",
- },
-});
 
 export default LoginScreen;

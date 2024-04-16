@@ -11,15 +11,14 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
-import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import styles from "../styles";
 
-const InvestmentIncome = () => {
+const DeductionLimit = () => {
  const navigation = useNavigation();
- const [interestGain, setInterestGain] = useState();
- const [interestLoss, setInterestLoss] = useState();
- const [dividendGain, setDividendGain] = useState();
- const [dividendLoss, setDividendLoss] = useState();
+ const [rrspcontrib, setRRSPContrib] = useState();
+ const [tuition, setTuition] = useState();
+ const [deduc, setDeduc] = useState();
 
  return (
   <GradientContainer style={styles.container}>
@@ -38,47 +37,41 @@ const InvestmentIncome = () => {
      }}
     >
      <View style={styles.indicatorContainer}>
-      <Image resizeMode="contain" source={require("../assets/progress_2_3.png")} />
+      <Image resizeMode="contain" source={require("../assets/progress2.png")} />
      </View>
      <ScrollView contentContainerStyle={{}}>
       <View style={{ padding: 15 }}>
-       <Text style={styles.title}>What is your Investment Income?</Text>
+       <Text style={styles.title}>Do you have any Deduction Limits?</Text>
        <Text style={styles.subtitle}>
-        If you have Investments, we need to track their profits. Do not include
-        the investment amount, we only need to know how much you GAINED or LOST
+        If you have any unused RRSP contributions, tuition carryforwards, and
+        other deductions.
        </Text>
 
        <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>Your GAIN in interest?</Text>
+        <Text style={styles.inputLabel}>Unused RRSP Contributtions</Text>
         <TextInput
          style={styles.input}
-         value={interestGain}
-         onChangeText={setInterestGain}
-         placeholder="$ 0.00"
+         value={rrspcontrib}
+         onChangeText={setRRSPContrib}
+         placeholder=""
          keyboardType="number-pad"
         />
-        <Text style={styles.inputLabel}>Your LOSS in interest?</Text>
+
+        <Text style={styles.inputLabel}>Tuition Carryforwards</Text>
         <TextInput
          style={styles.input}
-         value={interestLoss}
-         onChangeText={setInterestLoss}
-         placeholder="$ 0.00"
+         value={tuition}
+         onChangeText={setTuition}
+         placeholder=""
          keyboardType="number-pad"
         />
-        <Text style={styles.inputLabel}>Your GAIN in dividends?</Text>
+
+        <Text style={styles.inputLabel}>Any other Deductions</Text>
         <TextInput
          style={styles.input}
-         value={dividendGain}
-         onChangeText={setDividendGain}
-         placeholder="$ 0.00"
-         keyboardType="number-pad"
-        />
-        <Text style={styles.inputLabel}>Your LOSS in dividends? </Text>
-        <TextInput
-         style={styles.input}
-         value={dividendLoss}
-         onChangeText={setDividendLoss}
-         placeholder="$ 0.00"
+         value={deduc}
+         onChangeText={setDeduc}
+         placeholder=""
          keyboardType="number-pad"
         />
        </View>
@@ -89,7 +82,7 @@ const InvestmentIncome = () => {
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
      onPress={() => {
-      navigation.navigate("RegisteredInvestmentAccounts");
+      navigation.navigate("CapitalGains");
      }}
      title="Next"
     />
@@ -98,4 +91,4 @@ const InvestmentIncome = () => {
  );
 };
 
-export default InvestmentIncome;
+export default DeductionLimit;
