@@ -36,7 +36,7 @@ const LoginScreen = ({ navigation }) => {
 
    if (response.status === 200) {
     localStorage.setItem("token", data.token.split(" ")[1]); // Store only the token part, not 'Bearer'
-    navigation.navigate("MainPage");
+    navigation.navigate("Dashboard");
    } else {
     throw new Error(data.message || "An error occurred during login");
    }
