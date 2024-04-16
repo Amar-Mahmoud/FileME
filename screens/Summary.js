@@ -11,9 +11,24 @@ import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
+import { getUserData } from "./backend/schema/user.js"; // Import your MongoDB API function
 
-const Summary = ({ userData, user, capital, incomeTotal, expenses, other, deductionTotal }) => {
-  
+const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const userDataFromMongoDB = await getUserDataFromMongoDB(); // Assuming this function retrieves userData from MongoDB
+        setUserData(userData);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+ 
  // Tax calculation function
   const calculateTax = () => {
     let taxableIncome = userData.income.employmentIncome +
@@ -105,6 +120,7 @@ const Summary = ({ userData, user, capital, incomeTotal, expenses, other, deduct
 
  return (
     <View>
+  
       <Text style={styles.title}>Summary</Text>
 
       <Text style={styles.in}>INCOME</Text>
@@ -118,8 +134,6 @@ const Summary = ({ userData, user, capital, incomeTotal, expenses, other, deduct
         <Text style={styles.in}>Self-Employment</Text>
         <Text style={styles.out}>${userData.income.selfEmployedIncome}</Text>
       </View>
-
-      {/* Add similar View components for other income categories */}
 
       <Text style={styles.in}>Total</Text>
       <Text style={styles.out}>${incomeTotal}</Text>
@@ -138,8 +152,6 @@ const Summary = ({ userData, user, capital, incomeTotal, expenses, other, deduct
         <Text style={styles.out}>${other.charitableDonations}</Text>
       </View>
 
-      {/* Add similar View components for other deductions */}
-
       <Text style={styles.in}>Total</Text>
       <Text style={styles.out}>${deductionTotal}</Text>
 
@@ -151,6 +163,7 @@ const Summary = ({ userData, user, capital, incomeTotal, expenses, other, deduct
 
       <Text style={styles.in}>DEBIT (CREDIT)</Text>
       <Text style={styles.out}>${amt}</Text>
+       
     </View>
   );
 };
