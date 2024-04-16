@@ -19,7 +19,7 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const userDataFromMongoDB = await getUserData(); 
+        const userData = await getUserData(); 
         setUserData(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -116,7 +116,7 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
     perc = 0.40;
   }
 
-  const amt = net * perc;
+ const amt = net * perc;
 
  return (
     <View>
