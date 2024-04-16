@@ -19,7 +19,7 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const userDataFromMongoDB = await getUserDataFromMongoDB(); // Assuming this function retrieves userData from MongoDB
+        const userDataFromMongoDB = await getUserData(); 
         setUserData(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);
