@@ -101,37 +101,42 @@ const CANADA_CAREGIVER_AMOUNT = 7999;
 
   const amt = net * perc;
 
-  return (
+ return (
     <View>
       <Text style={styles.title}>Summary</Text>
 
       <Text style={styles.in}>INCOME</Text>
 
-      <Text style={styles.in}>Employment</Text>
-      //retrieves employementIncome from user.js in backend/schema/user.js
-      <Text style={styles.out}>${employmentIncome}</Text>
-      <Text style={styles.in}>Self-Employment</Text>
-      <Text style={styles.out}>${selfemploymentIncome}</Text>
-      <Text style={styles.in}>Investment</Text>
-      <Text style={styles.out}>${investmentincome}</Text>
-      <Text style={styles.in}>Pension</Text>
-      <Text style={styles.out}>${pensionIncome + rrspIncome}</Text>
-      <Text style={styles.in}>Public Benefits</Text>
-      <Text style={styles.out}>${governmentBenefits}</Text>
-      <Text style={styles.in}>Capital Gain (Loss)</Text>
-      <Text style={styles.out}>${capital}</Text>
+      <View style={styles.rowContainer}>
+        <Text style={styles.in}>Employment</Text>
+        <Text style={styles.out}>${userData.income.employmentIncome}</Text>
+      </View>
+
+      <View style={styles.rowContainer}>
+        <Text style={styles.in}>Self-Employment</Text>
+        <Text style={styles.out}>${userData.income.selfEmployedIncome}</Text>
+      </View>
+
+      {/* Add similar View components for other income categories */}
 
       <Text style={styles.in}>Total</Text>
       <Text style={styles.out}>${incomeTotal}</Text>
 
+      {/* DEDUCTIONS */}
+
       <Text style={styles.in}>DEDUCTIONS</Text>
 
-      <Text style={styles.in}>Business Expenses</Text>
-      <Text style={styles.out}>${expenses}</Text>
-      <Text style={styles.in}>Charity Donation</Text>
-      <Text style={styles.out}>${charitableDonations}</Text>
-      <Text style={styles.in}>Other Deductions</Text>
-      <Text style={styles.out}>${other}</Text>
+      <View style={styles.rowContainer}>
+        <Text style={styles.in}>Business Expenses</Text>
+        <Text style={styles.out}>${expenses}</Text>
+      </View>
+
+      <View style={styles.rowContainer}>
+        <Text style={styles.in}>Charity Donation</Text>
+        <Text style={styles.out}>${other.charitableDonations}</Text>
+      </View>
+
+      {/* Add similar View components for other deductions */}
 
       <Text style={styles.in}>Total</Text>
       <Text style={styles.out}>${deductionTotal}</Text>
@@ -161,6 +166,12 @@ const styles = StyleSheet.create({
   out: {
     fontSize: 18,
     textAlign: "right",
+  },
+  rowContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: 5,
   },
 });
 
