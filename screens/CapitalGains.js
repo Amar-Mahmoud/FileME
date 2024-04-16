@@ -19,8 +19,8 @@ const DeductionLimit = () => {
  const navigation = useNavigation();
     const { userData, updateUserData } = useData();
 
- const [totalprofit, setTotalProfit] = useState();
- const [totalloss, setTotalLoss] = useState();
+ const [totalprofit, setTotalProfit] = useState( userData.totalprofit || "");
+ const [totalloss, setTotalLoss] = useState( userData.totalloss || "");
 
     const handleSave = () => {
         updateUserData({ totalprofit, totalloss });

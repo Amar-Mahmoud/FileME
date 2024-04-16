@@ -19,9 +19,9 @@ const DeductionLimit = () => {
  const navigation = useNavigation();
  const { userData, updateUserData } = useData();
 
- const [rrspcontrib, setRRSPContrib] = useState();
- const [tuition, setTuition] = useState();
- const [deduc, setDeduc] = useState();
+ const [rrspcontrib, setRRSPContrib] = useState(userData.rrspcontrib | "");
+ const [tuition, setTuition] = useState( userData.tuition || "");
+ const [deduc, setDeduc] = useState( userData.deduc || "");
 
  const handleSave = () => {
   updateUserData({ rrspcontrib, tuition, deduc });

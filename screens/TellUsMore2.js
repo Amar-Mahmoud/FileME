@@ -24,9 +24,10 @@ const TellUsMore2 = () => {
     let date = new Date(dob);
   
     if (date instanceof Date) {
-      const dob2 = date.toISOString();
-      dob = dob2;
-      updateUserData({ dob });
+      const dob2 = date.toISOString().split('T')[0];  
+  
+      setDOB(dob2);  // Assuming setDOB updates the state or context appropriately
+      updateUserData({ dob: dob2 });  // Pass the formatted date-only string
     } else {
       console.error('dob is not a valid Date object');
     }
