@@ -3,12 +3,13 @@ import { View, StyleSheet, Image, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import styles from "../styles";
+import GradientContainer from "../components/GradientContainer";
 
 const FinishPage = () => {
  const navigation = useNavigation();
 
  return (
-  <View style={styles.container}>
+  <GradientContainer style={styles.container}>
    <Image
     style={styles.logo}
     resizeMode="contain"
@@ -28,7 +29,7 @@ const FinishPage = () => {
     onPress={() => navigation.navigate("Dashboard")}
     title="Bring Me Back Home!"
    />
-  </View>
+  </GradientContainer>
  );
 };
 

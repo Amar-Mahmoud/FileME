@@ -5,39 +5,32 @@ import SecondaryButton from "../components/SecondaryButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
 
-const Onboarding_3 = () => {
+const EmailVerified = () => {
  const navigation = useNavigation();
 
  return (
   <GradientContainer style={styles.container}>
-   <View
-    style={{
-     marginHorizontal: 5,
-     alignSelf: "center",
-     justifyContent: "center",
-     flex: 1,
-    }}
-   >
+   <View style={{ marginHorizontal: 5, alignSelf:"center", justifyContent: "center", flex: 1 }}>
     <Image
-     style={{ ...styles.logo, margintop: "30%" }}
+     style={{ ...styles.logo }}
      resizeMode="contain"
-     source={require("../assets/provideinfoscreen.png")}
+     source={require("../assets/checkmark.png")}
     />
     <Text style={[styles.title, { textAlign: "center", fontSize: 24 }]}>
-     Let's Start
+    Email verified
     </Text>
     <Text style={[styles.subHeadline2]}>
-     First, we’ll start with your Personal infomation!
+    Your email address has been verified successfully
     </Text>
    </View>
 
    <SecondaryButton
     style={styles.startButton}
-    onPress={() => navigation.navigate("SINVerificationScreen")}
-    title="Provide Your Info!"
+    onPress={() => navigation.navigate("CreatePassword")}
+    title="Continue"
    />
   </GradientContainer>
  );
 };
 
-export default Onboarding_3;
+export default EmailVerified;

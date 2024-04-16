@@ -3,12 +3,13 @@ import { View, StyleSheet, Image, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
+import GradientContainer from "../components/GradientContainer";
 
 const Onboarding_2 = () => {
  const navigation = useNavigation();
 
  return (
-  <View style={styles.container}>
+  <GradientContainer style={styles.container}>
    <View style={styles.statusBarPlaceholder} />
 
    <View style={styles.indicatorContainer}>
@@ -18,8 +19,9 @@ const Onboarding_2 = () => {
    </View>
 
    <Image
-    style={[styles.logo, { height: 400 }]}
-    source={require("../assets/onboarding_2.png")} // Path to your image
+    style={[styles.logo]}
+    source={require("../assets/onboarding_2.png")}
+    resizeMode="contain"
    />
 
    <View>
@@ -33,7 +35,7 @@ const Onboarding_2 = () => {
     onPress={() => navigation.navigate("Onboarding_3")}
     title="Get Started"
    />
-  </View>
+  </GradientContainer>
  );
 };
 

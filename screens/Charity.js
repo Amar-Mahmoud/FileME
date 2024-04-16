@@ -6,17 +6,17 @@ import {
  TouchableOpacity,
  StyleSheet,
  Image,
+ ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
-import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import styles from "../styles";
 
-const DependentsPage = () => {
+const RegisteredInvestmentAccounts = () => {
  const navigation = useNavigation();
- const [dependents, setDependents] = useState("");
-
+const [donation, setDonation] = useState();
  return (
   <GradientContainer style={styles.container}>
    <View style={{ justifyContent: "space-between", flex: 1 }}>
@@ -34,34 +34,37 @@ const DependentsPage = () => {
      }}
     >
      <View style={styles.indicatorContainer}>
-      <Image resizeMode="contain" source={require("../assets/progress3.png")} />
+      <Image resizeMode="contain" source={require("../assets/progress1.png")} />
      </View>
+     <ScrollView contentContainerStyle={{}}>
+      <View style={{ padding: 15 }}>
+       <Text style={styles.title}>Have you given any money to Charity?</Text>
+       <Text style={styles.subtitle}>
+        Donations are tax deductible! Enter the total amount of donations you
+        have given this year
+       </Text>
 
-     <View style={{ padding: 10 }}>
-      <Text style={styles.title}>Do you have any Dependents?</Text>
-      <Text style={{...styles.subHeadline2, textAlign: "left"}}>
-       A dependent is someone you support financially, like a child or a family
-       member who depends on you. For tax purposes, this could mean: Your
-       children under 18 years of age. Any other relatives who rely on you for
-       support because they have a low income or an impairment.
-      </Text>
-
-      <View style={styles.inputContainer}>
-       <SecondaryButton
-        onPress={() => {
-         setDependents(true);
-         navigation.navigate("Dependents");
-        }}
-        title="Add a Dependent"
-       />
+       <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>
+        Charitable Donations
+        </Text>
+        <TextInput
+         style={styles.input}
+         value={donation}
+         onChangeText={setDonation}
+         placeholder=""
+         keyboardType="number-pad"
+        />
+        
+       </View>
       </View>
-     </View>
+     </ScrollView>
     </View>
 
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
      onPress={() => {
-      navigation.navigate("ConsentPage");
+      navigation.navigate("DeductionLimit");
      }}
      title="Next"
     />
@@ -70,4 +73,4 @@ const DependentsPage = () => {
  );
 };
 
-export default DependentsPage;
+export default RegisteredInvestmentAccounts;

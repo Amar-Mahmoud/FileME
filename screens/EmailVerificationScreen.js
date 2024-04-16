@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from "../styles";
+import GradientContainer from "../components/GradientContainer";
+
 
 const EmailVerificationScreen = () => {
   const navigation = useNavigation();
@@ -9,13 +11,11 @@ const EmailVerificationScreen = () => {
   const [isSelected, setSelection] = useState(false);
 
   return (
-    <View style={styles.container}>
-      {/* Replace with your own implementation of a back arrow if needed */}
+    <GradientContainer style={styles.container}>
       <TouchableOpacity 
         style={styles.backArrow}
         onPress={() => navigation.goBack()}
       >
-        {/* Icon component or image */}
       </TouchableOpacity>
 
       <View style={styles.indicatorContainer}>
@@ -41,7 +41,7 @@ const EmailVerificationScreen = () => {
       >
         <Text style={styles.buttonText}>Continue</Text>
       </TouchableOpacity>
-    </View>
+    </GradientContainer>
   );
 };
 
