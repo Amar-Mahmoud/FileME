@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
-import { getUserData } from "./backend/schema/user.js"; // Import your MongoDB API function
+import { getUserData } from "./backend/schemas/user"; // Import your MongoDB API function
 
 const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
   const [userData, setUserData] = useState(null);
@@ -99,7 +99,7 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
   const CANADA_CAREGIVER_AMOUNT = 7999;
 
  // Calculations
-  const net = incomeTotal - deductionTotal;
+  const net = calculateTax();
 
   let perc = 0;
   if (net >= 0 && net <= 20000) {
@@ -214,7 +214,7 @@ const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
 
       <View style={styles.rowContainer}>
       <Text style={styles.in}>DEBIT (CREDIT)</Text>
-      <Text style={styles.out}>${amt}</Text>
+      <Text style={styles.out}>${calculateTax()}</Text>
       </View>
        
     </View>
