@@ -37,7 +37,7 @@ const DeductionLimit = () => {
      }}
     >
      <View style={styles.indicatorContainer}>
-      <Image resizeMode="contain" source={require("../assets/progress3.png")} />
+      <Image resizeMode="contain" source={require("../assets/progress4.png")} />
      </View>
      <ScrollView contentContainerStyle={{}}>
       <View style={{ padding: 15 }}>

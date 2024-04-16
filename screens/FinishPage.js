@@ -9,17 +9,28 @@ const FinishPage = () => {
  const navigation = useNavigation();
 
  return (
-  <GradientContainer style={styles.container}>
-   <Image
-    style={styles.logo}
-    resizeMode="contain"
-    source={require("../assets/onboarding_1.png")}
-   />
+    <GradientContainer style={styles.container}>
+    <View style={styles.statusBarPlaceholder} />
+ 
+    <View style={styles.indicatorContainer}>
+     <View style={[styles.indicator, styles.activeIndicator]} />
+
+     <View style={[styles.indicator, styles.activeIndicator]} />
+
+     <View style={[styles.indicator, styles.activeIndicator]} />
+
+    </View>
+ 
+    <Image
+     style={styles.logo}
+     resizeMode="contain"
+     source={require("../assets/onboarding_1.png")} // Path to your image
+    />
 
    <View style={{ marginHorizontal: 5 }}>
-    <Text style={styles.subHeadline}>We’re all done!</Text>
+    <Text style={styles.headline}>We’re all done!</Text>
 
-    <Text style={styles.headline}>
+    <Text style={styles.subHeadline2}>
      We’re All Set! Your tax information is now available in the home screen!
     </Text>
    </View>

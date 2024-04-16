@@ -28,6 +28,7 @@ import CodeSent from "./screens/CodeSent";
 import VerificationComplete from "./screens/VerificationComplete";
 import VerifyEmail from "./screens/VerifyEmail";
 import VerifyEmail2 from "./screens/VerifyEmail2";
+import FinishPage from "./screens/FinishPage";
 import EmailVerified from "./screens/EmailVerified";
 import CreatePassword from "./screens/CreatePassword";
 import PasswordCreated from "./screens/PasswordCreated";
@@ -253,6 +254,12 @@ function App() {
     />
 
     <Stack.Screen
+     name="FinishPage"
+     component={FinishPage}
+     options={{ headerShown: false }}
+    />
+
+    <Stack.Screen
      name="Landing"
      component={LandingPage}
      options={{
@@ -300,10 +307,10 @@ function App() {
      component={MyAccount}
      options={{ title: "Dashboard", headerLeft: null }}
     />
-    <Stack.Screen 
-    name="Dashboard"
-    component={Dashboard}
-    options={{ headerShown: false }}
+    <Stack.Screen
+     name="Dashboard"
+     component={Dashboard}
+     options={{ headerShown: false }}
     />
    </Stack.Navigator>
   </NavigationContainer>

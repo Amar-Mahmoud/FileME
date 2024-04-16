@@ -39,7 +39,7 @@ const RegisteredInvestmentAccounts = () => {
      <View style={styles.indicatorContainer}>
       <Image
        resizeMode="contain"
-       source={require("../assets/progress_2_3.png")}
+       source={require("../assets/progress_2_4.png")}
       />
      </View>
      <ScrollView contentContainerStyle={{}}>

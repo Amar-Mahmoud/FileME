@@ -54,14 +54,10 @@ const BusinessPage = () => {
      style={{
       flex: 1,
       flexDirection: "column",
+      marginTop: "10%"
      }}
     >
-     <View style={styles.indicatorContainer}>
-      <Image
-       resizeMode="contain"
-       source={require("../assets/progress_2_3.png")}
-      />
-     </View>
+
      <ScrollView contentContainerStyle={{}}>
       <View style={{ padding: 15 }}>
        <Text style={styles.title}>Do you have a business?</Text>
