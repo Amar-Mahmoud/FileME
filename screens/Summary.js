@@ -12,6 +12,7 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import { getUserData } from "./backend/schemas/user"; // Import your MongoDB API function
+import { useData } from "../components/DataProvider";
 
 <<<<<<< HEAD
 const Summary = () => {
@@ -24,6 +25,7 @@ const Summary = () => {
 =======
 const Summary = ({ capital, incomeTotal, expenses, other, deductionTotal }) => {
   const [userData, setUserData] = useState(null);
+  const { userData } = useData();
 
   useEffect(() => {
     async function fetchData() {
