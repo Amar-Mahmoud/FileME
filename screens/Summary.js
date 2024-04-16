@@ -12,8 +12,76 @@ import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 
-const Summary = ({ user, capital, incomeTotal, expenses, other, deductionTotal }) => {
-  // Calculations
+const Summary = ({ userData, user, capital, incomeTotal, expenses, other, deductionTotal }) => {
+  
+ function calculateTax(userData) {
+  let taxableIncome = userData.income.employmentIncome +
+    userData.income.selfEmployedIncome.netBusinessIncome +
+    userData.income.investmentIncome.interestProfit +
+    userData.income.investmentIncome.dividendsProfit +
+    userData.income.pensionIncome +
+    userData.income.rrspIncome +
+    userData.income.otherIncome +
+    userData.income.governmentBenefits -
+    userData.receipts.rrspContributions -
+    userData.receipts.employmentExpenses.homeOffice -
+    userData.receipts.employmentExpenses.vehicle -
+    userData.receipts.employmentExpenses.supplies -
+    userData.receipts.employmentExpenses.travel -
+    userData.receipts.employmentExpenses.tools -
+    userData.receipts.otherDeductions.childcareExpenses -
+    userData.receipts.otherDeductions.medicalExpenses -
+    userData.receipts.otherDeductions.studentLoanInterest -
+    userData.otherInformation.deductionLimits.unusedRRSPContributions -
+    userData.otherInformation.deductionLimits.tuitionCarryforwards -
+    userData.otherInformation.charitableDonations;
+
+  // Apply dependent deductions
+  userData.dependents.forEach(dependent => {
+    if (dependent.income < BASIC_PERSONAL_AMOUNT) {
+      taxableIncome -= ELIGIBLE_DEPENDENT_AMOUNT;
+      if (dependent.age >= 18 && dependent.impairment) {
+        taxableIncome -= CANADA_CAREGIVER_AMOUNT;
+      } else if (dependent.age < 18) {
+        taxableIncome -= 2499;
+      }
+    }
+  });
+
+  // Calculate tax based on brackets
+  let taxOwed = 0;
+  if (taxableIncome > 100000) {
+    taxOwed += (taxableIncome - 100000) * 0.40;
+    taxableIncome = 100000;
+  }
+  if (taxableIncome > 80000) {
+    taxOwed += (taxableIncome - 80000) * 0.35;
+    taxableIncome = 80000;
+  }
+  if (taxableIncome > 60000) {
+    taxOwed += (taxableIncome - 60000) * 0.30;
+    taxableIncome = 60000;
+  }
+  if (taxableIncome > 40000) {
+    taxOwed += (taxableIncome - 40000) * 0.25;
+    taxableIncome = 40000;
+  }
+  if (taxableIncome > 20000) {
+    taxOwed += (taxableIncome - 20000) * 0.20;
+    taxableIncome = 20000;
+  }
+  if (taxableIncome <= 20000) {
+    taxOwed += taxableIncome * 0.15;
+  }
+
+  return taxOwed >= 0 ? `$${taxOwed.toFixed(2)}` : `($${(-taxOwed).toFixed(2)})`;
+}
+
+const BASIC_PERSONAL_AMOUNT = 15000;
+const ELIGIBLE_DEPENDENT_AMOUNT = 15000;
+const CANADA_CAREGIVER_AMOUNT = 7999;
+
+ // Calculations
   const net = incomeTotal - deductionTotal;
 
   let perc = 0;
