@@ -1,5 +1,16 @@
-import React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import {
+ View,
+ Text,
+ TextInput,
+ TouchableOpacity,
+ StyleSheet,
+ Image,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import SecondaryButton from "../components/SecondaryButton";
+import CustomButton from "../components/CustomButton";
+import styles from "../styles";
 
 const Summary = ({ user, capital, incomeTotal, expenses, other, deductionTotal }) => {
   // Calculations
@@ -29,6 +40,7 @@ const Summary = ({ user, capital, incomeTotal, expenses, other, deductionTotal }
       <Text style={styles.in}>INCOME</Text>
 
       <Text style={styles.in}>Employment</Text>
+      //retrieves employementIncome from user.js in backend/schema/user.js
       <Text style={styles.out}>${employmentIncome}</Text>
       <Text style={styles.in}>Self-Employment</Text>
       <Text style={styles.out}>${selfemploymentIncome}</Text>
