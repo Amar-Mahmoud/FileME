@@ -61,7 +61,7 @@ const DeductionLimit = () => {
          style={styles.input}
          value={rrspcontrib}
          onChangeText={setRRSPContrib}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
 
@@ -70,7 +70,7 @@ const DeductionLimit = () => {
          style={styles.input}
          value={tuition}
          onChangeText={setTuition}
-         placeholder=""
+         pplaceholder="$ 0.00"
          keyboardType="number-pad"
         />
 
@@ -79,7 +79,7 @@ const DeductionLimit = () => {
          style={styles.input}
          value={deduc}
          onChangeText={setDeduc}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
        </View>

@@ -14,15 +14,24 @@ import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
 import { useData } from "../components/DataProvider";
 
-
 const MartialStatus = () => {
  const navigation = useNavigation();
  const { userData, updateUserData } = useData();
+ const [buttonColor, setButtonColor] = useState("#fff");
+
  const [married, setMarried] = React.useState(userData.married || false);
+
+ const handlePress = () => {
+  const newColor = buttonColor === "#fff" ? "#f2f2f2" : "#fff";
+  setButtonColor(newColor);
+  if (onPress) {
+   onPress();
+  }
+ };
 
  const handleSave = () => {
   updateUserData({ married });
-  navigation.navigate("DependentsPage")
+  navigation.navigate("DependentsPage");
  };
 
  return (

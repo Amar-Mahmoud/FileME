@@ -40,6 +40,8 @@ import Charity from "./screens/Charity";
 import DeductionLimit from "./screens/DeductionLimit";
 import CapitalGains from "./screens/CapitalGains";
 import CapitalGains2 from "./screens/CapitalGains2";
+import Summary from "./screens/Summary";
+import Profile from "./screens/Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -258,6 +260,17 @@ function App() {
      <Stack.Screen
       name="FinishPage"
       component={FinishPage}
+      options={{ headerShown: false }}
+     />
+
+     <Stack.Screen
+      name="Summary"
+      component={Summary}
+      options={{ headerShown: false }}
+     />
+        <Stack.Screen
+      name="Profile"
+      component={Profile}
       options={{ headerShown: false }}
      />
 

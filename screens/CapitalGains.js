@@ -62,7 +62,7 @@ const DeductionLimit = () => {
          style={styles.input}
          value={totalprofit}
          onChangeText={setTotalProfit}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
 
@@ -73,7 +73,7 @@ const DeductionLimit = () => {
          style={styles.input}
          value={totalloss}
          onChangeText={setTotalLoss}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
        </View>

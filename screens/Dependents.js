@@ -13,18 +13,35 @@ import CustomButton from "../components/CustomButton"; // Assuming this is your 
 import RadioForm from "react-native-simple-radio-button"; // You might need to install this package
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
+import { useData } from "../components/DataProvider";
 
 const Dependents = () => {
  const navigation = useNavigation();
- const [formData, setFormData] = useState({
-  fullName: "",
-  sin: "",
-  dob: "",
-  relationship: "",
-  income: "",
-  educationCosts: "",
-  residency: "",
- });
+ const { userData, updateUserData } = useData();
+
+ const [dependentFullName, setDependentFullName] = React.useState(
+  userData.dependentFullName | " "
+ );
+ const [dependentSIN, setDependentSIN] = React.useState(userData.dependentSIN | " ");
+ const [dependentDOB, setDependentDOB] = React.useState(userData.dependentDOB | " ");
+ const [dependentRelationship, setDependentRelationship] = React.useState(
+  userData.dependentRelationship | " "
+ );
+ const [dependentIncome, setDependentIncome] = React.useState(
+  userData.dependentIncome | ""
+ );
+
+
+ const handleSave = () => {
+  updateUserData({
+   dependentFullName,
+   dependentSIN,
+   dependentDOB,
+   dependentRelationship,
+   dependentIncome,
+  });
+  navigation.navigate("ConsentPage");
+ };
 
  const relationshipOptions = [
   { label: "Your Spouse", value: "spouse" },
@@ -38,18 +55,6 @@ const Dependents = () => {
   { label: "Partially throughout the year!", value: "partial" },
   { label: "No, they haven’t.", value: "none" },
  ];
-
- const handleSubmit = () => {
-  console.log(formData);
-  // navigation.navigate('NextScreen', { formData }); // Example navigation
- };
-
- const handleInputChange = (name, value) => {
-  setFormData((prevState) => ({
-   ...prevState,
-   [name]: value,
-  }));
- };
 
  return (
   <GradientContainer style={styles.container}>
@@ -65,7 +70,7 @@ const Dependents = () => {
      contentContainerStyle={{
       flex: 1,
       flexDirection: "column",
-      justifyContent: "center"
+      justifyContent: "center",
      }}
     >
      <View style={{ padding: 10 }}>
@@ -73,16 +78,16 @@ const Dependents = () => {
        <Text style={styles.inputLabel}>First and Last Name</Text>
        <TextInput
         style={styles.input}
-        value={formData.fullName}
-        onChangeText={(value) => handleInputChange("fullName", value)}
+        value={dependentFullName}
+        onChangeText={setDependentFullName}
         placeholder=""
         keyboardType="number-pad"
        />
        <Text style={styles.inputLabel}>SIN</Text>
        <TextInput
         style={styles.input}
-        value={formData.sin}
-        onChangeText={(value) => handleInputChange("sin", value)}
+        value={ dependentSIN}
+        onChangeText={setDependentSIN}
         placeholder="XXX-XXX-XXX"
         keyboardType="number-pad"
        />
@@ -90,9 +95,9 @@ const Dependents = () => {
        <Text style={styles.inputLabel}>Date of Birth</Text>
        <TextInput
         style={styles.input}
-        value={formData.dob}
-        onChangeText={(value) => handleInputChange("dob", value)}
-        placeholder="MM/DD/YYYY"
+        value={dependentDOB}
+        onChangeText={setDependentDOB}
+        placeholder="YYYY-MM-DD"
         keyboardType="number-pad"
        />
 
@@ -100,7 +105,7 @@ const Dependents = () => {
         <RadioForm
          radio_props={relationshipOptions}
          initial={-1}
-         onPress={(value) => handleInputChange("relationship", value)}
+         onPress={setDependentRelationship}
          buttonColor={"#2196f3"}
          selectedButtonColor={"#2196f3"}
         />
@@ -109,8 +114,8 @@ const Dependents = () => {
        <Text style={styles.inputLabel}>Income</Text>
        <TextInput
         style={styles.input}
-        value={formData.income}
-        onChangeText={(value) => handleInputChange("income", value)}
+        value={dependentIncome}
+        onChangeText={setDependentIncome}
         placeholder=""
         keyboardType="number-pad"
        />
@@ -120,7 +125,9 @@ const Dependents = () => {
 
     <CustomButton
      style={{ ...styles.nextButton, bottom: 0 }}
-     onPress={() => navigation.navigate("MartialStatus")}
+     onPress={() => {
+      handleSave();
+     }}
      title="Next"
     />
    </View>

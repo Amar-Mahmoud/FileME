@@ -35,13 +35,14 @@ const LoginScreen = ({ navigation }) => {
    const data = await response.json();
 
    if (response.status === 200) {
-    localStorage.setItem("token", data.token.split(" ")[1]); // Store only the token part, not 'Bearer'
+    localStorage.setItem("token", data.token.split(" ")[1]);
+    setEmail("");
     navigation.navigate("Dashboard");
    } else {
     throw new Error(data.message || "An error occurred during login");
    }
   } catch (error) {
-   setMessage(error.message); // Set error message to display on the screen
+   setMessage(error.message);
   }
  };
 
@@ -64,7 +65,7 @@ const LoginScreen = ({ navigation }) => {
      }}
     >
      <View style={{ flexDirection: "column" }}>
-      <Text style={styles.inputLabel}>Your email address/Phone number</Text>
+      <Text style={styles.inputLabel}>Your email address / Phone number</Text>
       <TextInput
        style={{
         ...styles.input,

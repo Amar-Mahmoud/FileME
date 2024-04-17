@@ -60,7 +60,7 @@ const handleSave = () => {
          style={styles.input}
          value={donation}
          onChangeText={setDonation}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
         

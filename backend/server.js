@@ -23,42 +23,59 @@ mongoose
  .catch((err) => console.error("DB connection error:", err));
 
 const userSchema = new mongoose.Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  phone: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  dob: { type: String, required: true },
+ firstName: { type: String, required: true },
+ lastName: { type: String, required: true },
+ phone: { type: String, required: true },
+ email: { type: String, required: true, unique: true },
+ password: { type: String, required: true },
+ dob: { type: String, required: true },
 });
 
-
 const taxSchema = new mongoose.Schema({
-  email: { type: String, required: false },
-  consent : { type: Boolean, required: false },
-  employed : { type: Boolean, required: false },
-  sin: { type: String, required: true },
-  income: { type: Number, required: false },
-  selfEmploymentIncome : { type: Number, required: false },
-  selfEmploymentExpenses : { type: Number, required: false },
-  interestGain : { type: Number, required: false },
-  interestLoss : { type: Number, required: false },
-  dividendGain : { type: Number, required: false },
-  dividendLoss : { type: Number, required: false },
-  rrspcontrib : { type: Number, required: false },
-  rrspwith : { type: Number, required: false },
-  pensionWithdrawl : { type: Number, required: false },
-  pension: { type: Number, required: false },
-  govIncome: { type: Number, required: false },
-  business: { type: Boolean, required: false },
-  donation: { type: Number, required: false },
-  tuition: { type: Number, required: false },
-  deduc: { type: Number, required: false },
-  totalprofit: { type: Number, required: false },
-  totalloss: { type: Number, required: false },
-  totalprofitproperty : { type: Number, required: false },
-  totallossproperty : { type: Number, required: false },
+ email: { type: String, required: false },
+ consent: { type: Boolean, required: false },
+ employed: { type: Boolean, required: false },
+ sin: { type: String, required: true },
+ income: { type: Number, required: false },
+ selfEmploymentIncome: { type: Number, required: false },
+ selfEmploymentExpenses: { type: Number, required: false },
 
+ dependent: { type: Boolean, required: false },
+ dependentFullName: { type: String, required: false },
+ dependentSIN: { type: String, required: false },
+ dependentDOB: { type: String, required: false },
+ dependentRelationship: { type: String, required: false },
+ dependentIncome: { type: Number, required: false },
+ dependentEducationCosts: { type: Number, required: false },
+ dependentResidency: { type: String, required: false },
 
+ interestGain: { type: Number, required: false },
+ interestLoss: { type: Number, required: false },
+
+ dividendGain: { type: Number, required: false },
+ dividendLoss: { type: Number, required: false },
+
+ rrspcontrib: { type: Number, required: false },
+ rrspwith: { type: Number, required: false },
+
+ pensionWithdrawl: { type: Number, required: false },
+ pension: { type: Number, required: false },
+ govIncome: { type: Number, required: false },
+
+ business: { type: Boolean, required: false },
+ homeOffice: { type: Number, required: false },
+ vehicle: { type: Number, required: false },
+ supplies: { type: Number, required: false },
+ travel: { type: Number, required: false },
+ tools: { type: Number, required: false },
+
+ donation: { type: Number, required: false },
+ tuition: { type: Number, required: false },
+ deduc: { type: Number, required: false },
+ totalprofit: { type: Number, required: false },
+ totalloss: { type: Number, required: false },
+ totalprofitproperty: { type: Number, required: false },
+ totallossproperty: { type: Number, required: false },
 });
 
 userSchema.pre("save", async function (next) {
@@ -102,7 +119,6 @@ userSchema.pre("save", async function (next) {
 const User = mongoose.model("User", userSchema);
 const Tax = mongoose.model("Tax", taxSchema);
 
-
 app.use(express.json());
 
 app.post("/signup", async (req, res) => {
@@ -123,22 +139,22 @@ app.post("/signup", async (req, res) => {
 });
 
 app.post("/fileTaxes", async (req, res) => {
-  try {
-   const newTax = new Tax(req.body);
+ try {
+  const newTax = new Tax(req.body);
   await newTax.save();
 
-   res.status(201).json({ message: "Tax Added Successfuly" });
-  } catch (error) {
-   console.log(error);
-   if (error.code === 11000) {
-    res.status(400).json({
-     message: "Account already exists with this email, try logging in instead.",
-    });
-   } else {
-    res.status(500).json({ message: error.message });
-   }
+  res.status(201).json({ message: "Tax Added Successfuly" });
+ } catch (error) {
+  console.log(error);
+  if (error.code === 11000) {
+   res.status(400).json({
+    message: "Account already exists with this email, try logging in instead.",
+   });
+  } else {
+   res.status(500).json({ message: error.message });
   }
- });
+ }
+});
 
 app.post("/login", async (req, res) => {
  try {

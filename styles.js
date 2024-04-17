@@ -17,35 +17,64 @@ export default StyleSheet.create({
   margin: 10,
   left: 10,
  },
+ title: {
+  fontSize: 34,
+  fontWeight: "bold",
+  textAlign: "left",
+ },
+ in: {
+  textAlign: "left",
+  fontSize: 16,
+  textAlign: "center",
+  color: "gray",
+  fontFamily: "SourceSansPro-Regular",
+ },
+ out: {
+  textAlign: "right",
+  fontSize: 16,
+  textAlign: "center",
+  color: "#000",
+  fontFamily: "SourceSansPro-Regular",
+ },
+ rowContainer: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  marginVertical: 5,
+ },
 
  title: {
   fontSize: 32,
   fontWeight: "bold",
   textAlign: "left",
+  fontFamily: "SourceSansPro-Regular",
  },
  subtitle: {
   fontSize: 20,
   textAlign: "left",
   fontWeight: "bold",
   color: "gray",
+  fontFamily: "SourceSansPro-Regular",
  },
  headline: {
   fontSize: 30,
   fontWeight: "bold",
   textAlign: "center",
+  fontFamily: "SourceSansPro-Regular",
  },
  subHeadline: {
   fontSize: 24,
   textAlign: "center",
   fontWeight: "bold",
   color: "#3A45AD",
+  fontFamily: "SourceSansPro-Regular",
  },
  subHeadline2: {
-    fontSize: 14,
-    textAlign: "center",
-    fontWeight: "normal",
-    color: "black",
-   },
+  fontSize: 14,
+  textAlign: "center",
+  fontWeight: "normal",
+  color: "black",
+  fontFamily: "SourceSansPro-Regular",
+ },
  inputContainer: {
   marginBottom: 20,
   marginTop: 20,
@@ -64,7 +93,6 @@ export default StyleSheet.create({
   fontSize: 14,
   backgroundColor: "#fff",
   marginTop: 5,
-  
  },
  startButton: {
   position: "absolute",

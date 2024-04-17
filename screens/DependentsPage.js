@@ -17,16 +17,13 @@ import { useData } from "../components/DataProvider";
 const DependentsPage = () => {
  const navigation = useNavigation();
  const { userData, updateUserData } = useData();
- const [dependents, setDependents] = React.useState();
+ const [dependents, setDependents] = React.useState(
+  userData.dependents || false
+ );
 
  const handleSave = () => {
   updateUserData({ dependents });
-
-  if (dependents) {
-   navigation.navigate("Dependents");
-  } else {
-   navigation.navigate("ConsentPage");
-  }
+  navigation.navigate("ConsentPage");
  };
 
  return (
@@ -62,7 +59,7 @@ const DependentsPage = () => {
        <SecondaryButton
         onPress={() => {
          setDependents(true);
-         handleSave();
+         navigation.navigate("Dependents");
         }}
         title="Add a Dependent"
        />

@@ -20,27 +20,34 @@ import { useData } from "../components/DataProvider";
 const BusinessPage = () => {
  const navigation = useNavigation();
  const { userData, updateUserData } = useData();
- const [business, setBusiness] = useState(userData.business || false);
- const [formData, setFormData] = useState({
-  business,
-  homeofficeexpenses: 0,
-  motorvehicleexpenses: 0,
-  supplies: 0,
-  travel: 0,
-  tools: 0,
- });
 
- const saveData = () => {
-    updateUserData(business, formData);
-    navigation.navigate("LetsFinish");
-    };
+ const [business, setBusiness] = React.useState(
+  userData.business | false
+ );
+ const [homeOffice, setHomeOffice] = React.useState(userData.homeOffice | 0);
+ const [vehicle, setvehicle] = React.useState(userData.vehicle | 0);
+ const [supplies, setSupplies] = React.useState(
+  userData.supplies | 0
+ );
+ const [travel, setTravel] = React.useState(
+  userData.travel | 0
+ );
+ const [tools, setTools] = React.useState(
+   userData.tools | 0
+  );
 
- // A function to update form data
- const handleInputChange = (name, value) => {
-  setFormData((prevState) => ({
-   ...prevState,
-   [name]: value,
-  }));
+
+ const handleSave = () => {
+  updateUserData({
+   business,
+   homeOffice,
+   vehicle,
+   supplies,
+   travel,
+   tools,
+
+  });
+  navigation.navigate("LetsFinish");
  };
 
  return (
@@ -87,8 +94,8 @@ const BusinessPage = () => {
        <TextInput
         style={styles.input}
         placeholder="$ 0.00"
-        value={formData.homeofficeexpenses}
-        onChangeText={(text) => handleInputChange("homeofficeexpenses", text)}
+        value={homeOffice}
+        onChangeText={setHomeOffice}
         keyboardType="number-pad"
        />
        <Text style={styles.subtitle}>
@@ -99,8 +106,8 @@ const BusinessPage = () => {
        <TextInput
         style={styles.input}
         placeholder="$ 0.00"
-        value={formData.motorvehicleexpenses}
-        onChangeText={(text) => handleInputChange("motorvehicleexpenses", text)}
+        value={vehicle}
+        onChangeText={setvehicle}
         keyboardType="number-pad"
        />
 
@@ -111,8 +118,8 @@ const BusinessPage = () => {
        <TextInput
         style={styles.input}
         placeholder="$ 0.00"
-        value={formData.supplies}
-        onChangeText={(text) => handleInputChange("supplies", text)}
+        value={supplies}
+        onChangeText={setSupplies}
         keyboardType="number-pad"
        />
 
@@ -124,8 +131,8 @@ const BusinessPage = () => {
        <TextInput
         style={styles.input}
         placeholder="$ 0.00"
-        value={formData.travel}
-        onChangeText={(text) => handleInputChange("travel", text)}
+        value={travel}
+        onChangeText={setTravel}
         keyboardType="number-pad"
        />
 
@@ -137,8 +144,8 @@ const BusinessPage = () => {
        <TextInput
         style={styles.input}
         placeholder="$ 0.00"
-        value={formData.tools}
-        onChangeText={(text) => handleInputChange("tools", text)}
+        value={tools}
+        onChangeText={setTools}
         keyboardType="number-pad"
        />
       </View>
@@ -147,7 +154,7 @@ const BusinessPage = () => {
      <CustomButton
       style={{ ...styles.nextButton, bottom: 0 }}
       onPress={() => {
-         saveData();
+         handleSave();
       }}
       title="Next"
      />

@@ -24,7 +24,7 @@ const DeductionLimit = () => {
 
  const handleSave = () => {
   updateUserData({ totalprofitproperty, totallossproperty });
-  navigation.navigate("FinishPage");
+  navigation.navigate("Summary");
  };
 
  return (
@@ -61,7 +61,7 @@ const DeductionLimit = () => {
          style={styles.input}
          value={totalprofitproperty}
          onChangeText={setTotalProfitProperty}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
 
@@ -72,7 +72,7 @@ const DeductionLimit = () => {
          style={styles.input}
          value={totallossproperty}
          onChangeText={setTotalLossProperty}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
        </View>

@@ -71,7 +71,7 @@ const RegisteredInvestmentAccounts = () => {
          style={styles.input}
          value={rrspcontrib}
          onChangeText={setRRSPContrib}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
         <Text style={styles.inputLabel}>Your WITHDRAWL from RRSP Account?</Text>
@@ -79,7 +79,7 @@ const RegisteredInvestmentAccounts = () => {
          style={styles.input}
          value={rrspwith}
          onChangeText={setRRSPWith}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
         <Text style={styles.inputLabel}>
@@ -89,7 +89,7 @@ const RegisteredInvestmentAccounts = () => {
          style={styles.input}
          value={pension}
          onChangeText={setPension}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
         <Text style={styles.inputLabel}>
@@ -99,7 +99,7 @@ const RegisteredInvestmentAccounts = () => {
          style={styles.input}
          value={pensionWithdrawl}
          onChangeText={setPensionWithdrawl}
-         placeholder=""
+         placeholder="$ 0.00"
          keyboardType="number-pad"
         />
        </View>
