@@ -39,7 +39,7 @@ export default StyleSheet.create({
  rowContainer: {
   flexDirection: "row",
   justifyContent: "space-between",
-  marginVertical: 5,
+  marginVertical: 7,
  },
  errorMessage: {
   color: "red",

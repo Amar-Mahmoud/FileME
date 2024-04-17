@@ -16,6 +16,7 @@ import styles from "../styles";
 
 const Summary = ({}) => {
  const { userData } = useData();
+  const navigation = useNavigation();
 
  const calculateTax = () => {
   let taxableIncome =
@@ -109,9 +110,10 @@ const Summary = ({}) => {
    <View style={{ flex: 1, marginTop: "15%" }}>
     <Text style={styles.title}>Summary</Text>
 
-    <View style = {{marginHorizontal : 0}}>
-     <Text style={styles.in}>INCOME</Text>
-
+    <View style={{ marginHorizontal: 0 }}>
+     <View style={styles.rowContainer}>
+      <Text style={{...styles.in, fontWeight: "500"}}>INCOME</Text>
+     </View>
      <View style={styles.rowContainer}>
       <Text style={styles.in}>Employment</Text>
       <Text style={styles.out}>${userData.income}</Text>
@@ -147,7 +149,7 @@ const Summary = ({}) => {
       <Text style={styles.out}>${userData.totalprofit}</Text>
      </View>
 
-     <Text style={styles.in}>Total</Text>
+     <Text style={{...styles.in, fontWeight: "500"}}>Total</Text>
      <Text style={styles.out}>
       $
       {userData.income +
@@ -158,8 +160,8 @@ const Summary = ({}) => {
        userData.pension +
        userData.totalprofit}
      </Text>
-
-     <Text style={styles.in}>DEDUCTIONS</Text>
+     <View style={{ marginTop: 15 }} />
+     <Text style={{...styles.in, fontWeight: "500"}}>DEDUCTIONS</Text>
 
      <View style={styles.rowContainer}>
       <Text style={styles.in}>Business Expenses</Text>
@@ -183,7 +185,7 @@ const Summary = ({}) => {
       </Text>
      </View>
 
-     <Text> </Text>
+     <View style={{ marginTop: 15 }} />
 
      <View style={styles.rowContainer}>
       <Text style={styles.in}>NET TAXABLE</Text>

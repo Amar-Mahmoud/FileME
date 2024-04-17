@@ -8,7 +8,30 @@ import { useData } from "../components/DataProvider";
 
 const AllDone = () => {
  const navigation = useNavigation();
+ const { userData, updateUserData } = useData();
 
+ const handleSubmit = async () => {
+  try {
+   const response = await fetch("http://localhost:3001/signup", {
+    method: "POST",
+    headers: {
+     "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+   });
+
+   const result = await response.json();
+   console.log("Server Response:", result);
+
+   if (response.ok) {
+    navigation.navigate("ProvideInfoScreen");
+   } else {
+    throw new Error(result.message || "Failed to create account");
+   }
+  } catch (error) {
+    console.log("Error creating account:", error);
+  }
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -36,7 +59,9 @@ const AllDone = () => {
 
    <SecondaryButton
     style={styles.startButton}
-    onPress={() => navigation.navigate("ProvideInfoScreen")}
+    onPress={() => {
+     handleSubmit();
+    }}
     title="Continue"
    />
   </GradientContainer>
