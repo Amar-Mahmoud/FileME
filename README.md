@@ -36,3 +36,5 @@ This tax filing software is built using React Native Expo for the frontend, bcry
    cd backend
    npm install
    nodemon.js server.js
+
+**Disclaimer**: This tax calculator app is designed for demonstration purposes only and should not be used for actual tax calculation or financial decision-making. The results provided by this app are hypothetical and do not guarantee actual tax liabilities or returns. Please consult with a professional tax advisor or the appropriate financial authority in your jurisdiction to obtain advice tailored to your specific circumstances.
