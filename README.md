@@ -13,7 +13,7 @@ This tax filing software is built using React Native Expo for the frontend, bcry
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/tax-filing-software.git
+   git clone https://github.com/Amar-Mahmoud/FileME.git
    
 2. Navigate to the project directory:
    ```bash
@@ -21,7 +21,7 @@ This tax filing software is built using React Native Expo for the frontend, bcry
 3. Install dependencies:
    ```bash
    npm install
-4. Create a .env file in the project root and add the MongoDB connection string:
+4. Create a .env file in the project root and add the MongoDB connection string along with the secret key and JWT token:
    ```bash
    PORT=3001
    DATABASE_URL=mongodb...
@@ -32,6 +32,7 @@ This tax filing software is built using React Native Expo for the frontend, bcry
    npm start
 6. Start the backend
    ```bash
+   cd ..
    cd backend
    npm install
    nodemon.js server.js
