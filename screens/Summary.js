@@ -98,8 +98,15 @@ const Summary = ({}) => {
  const amt = net * perc;
 
  return (
-  <GradientContainer>
-   <View style={{ flexDirection: "column", flex: 1, marginTop: "15%" }}>
+  <GradientContainer style={styles.container}>
+   <TouchableOpacity
+    style={styles.backButton}
+    onPress={() => navigation.goBack()}
+   >
+    <Image resizeMode="contain" source={require("../assets/back_icon.png")} />
+   </TouchableOpacity>
+
+   <View style={{ flex: 1, marginTop: "15%" }}>
     <Text style={styles.title}>Summary</Text>
 
     <View style = {{marginHorizontal : 0}}>

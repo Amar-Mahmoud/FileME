@@ -8,24 +8,7 @@ import { useData } from "../components/DataProvider";
 
 const AllDone = () => {
  const navigation = useNavigation();
- const { userData } = useData();
 
- const handleSubmit = async () => {
-  try {
-   const response = await fetch("http://localhost:3001/signup", {
-    method: "POST",
-    headers: {
-     "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-   });
-   navigation.navigate("ProvideInfoScreen");
-   const result = await response.json();
-   console.log("Data submitted:", result);
-  } catch (error) {
-   console.error("Error submitting data:", error);
-  }
- };
 
  return (
   <GradientContainer style={styles.container}>
@@ -53,7 +36,7 @@ const AllDone = () => {
 
    <SecondaryButton
     style={styles.startButton}
-    onPress={() => handleSubmit()}
+    onPress={() => navigation.navigate("ProvideInfoScreen")}
     title="Continue"
    />
   </GradientContainer>

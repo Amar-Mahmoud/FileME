@@ -89,6 +89,8 @@ const LoginScreen = ({ navigation }) => {
     </View>
    </View>
 
+   {message ? <Text style={styles.errorMessage}>{message}</Text> : null}
+
    <CustomButton
     style={styles.nextButton}
     onPress={() => handleLogin()}

@@ -41,6 +41,12 @@ export default StyleSheet.create({
   justifyContent: "space-between",
   marginVertical: 5,
  },
+ errorMessage: {
+  color: "red",
+  fontSize: 16,
+  textAlign: "center",
+  marginTop: 10,
+ },
 
  title: {
   fontSize: 32,

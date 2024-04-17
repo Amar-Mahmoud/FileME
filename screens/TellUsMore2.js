@@ -4,15 +4,12 @@ import {
  Text,
  TextInput,
  TouchableOpacity,
- StyleSheet,
  Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import SecondaryButton from "../components/SecondaryButton";
 import CustomButton from "../components/CustomButton";
 import styles from "../styles";
 import GradientContainer from "../components/GradientContainer";
-import Octicons from "react-native-vector-icons/Octicons";
 import { useData } from "../components/DataProvider";
 
 const TellUsMore2 = () => {
@@ -20,21 +17,48 @@ const TellUsMore2 = () => {
  const { userData, updateUserData } = useData();
  const [dob, setDOB] = React.useState(userData.dob || "");
 
- const handleSave = () => {
-    let date = new Date(dob);
-  
-    if (date instanceof Date) {
-      const dob2 = date.toISOString().split('T')[0];  
-  
-      setDOB(dob2);  // Assuming setDOB updates the state or context appropriately
-      updateUserData({ dob: dob2 });  // Pass the formatted date-only string
-    } else {
-      console.error('dob is not a valid Date object');
-    }
-  
+ const [errorMessage, setErrorMessage] = useState("");
+
+ const handleSave = async () => {
+  let date = new Date(dob);
+  if (!isNaN(date)) {
+   const dob2 = date.toISOString().split("T")[0];
+   console.log("Formatted DOB:", dob2); 
+   setDOB(dob2);
+   await updateUserData({ dob: dob2 });
+   console.log("Updated UserData:", { ...userData, dob: dob2 }); 
+  } else {
+   console.error("DOB is not a valid Date object");
+  }
+ };
+
+ const handleSubmit = async () => {
+  try {
+   const response = await fetch("http://localhost:3001/signup", {
+    method: "POST",
+    headers: {
+     "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+   });
+
+   const result = await response.json();
+   console.log("Server Response:", result); 
+
+   if (response.ok) {
     navigation.navigate("AllDone");
-  };
-  
+   } else {
+    throw new Error(result.message || "Failed to create account");
+   }
+  } catch (error) {
+   setErrorMessage(error.message);
+  }
+ };
+
+ const wrapper = async () => {
+  await handleSave();
+  handleSubmit();
+ };
 
  return (
   <GradientContainer style={styles.container}>
@@ -74,14 +98,16 @@ const TellUsMore2 = () => {
      />
     </View>
    </View>
+   {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
    <View style={{ flexDirection: "column" }}>
     <Text style={{ ...styles.subHeadline2, textAlign: "left" }}>
      By registering, you agree to our {terms()} and {privacy()}
     </Text>
+
     <CustomButton
      style={styles.nextButton}
-     onPress={() => handleSave()}
+     onPress={() => wrapper()}
      title="Create account"
     />
    </View>
